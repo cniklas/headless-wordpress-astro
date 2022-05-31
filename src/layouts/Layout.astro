@@ -1,0 +1,28 @@
+---
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noindex, nofollow">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+	<title>{title}</title>
+</head>
+
+<body class="bg-gray-100 dark:bg-midnight">
+	<nav class="fixed w-full z-10 top-0 bg-white dark:bg-gray-900 shadow">
+		App Nav
+	</nav>
+
+	<main class="container w-full mx-auto pt-20">
+		<slot />
+	</main>
+</body>
+</html>

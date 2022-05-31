@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// const data = await fetch('https://myplanner.de/tmt/wp-json/wp/v2/pages?page=1&per_page=10');
+const data = await fetch('https://hellewelle.de/wp-json/wp/v2/pages?page=1&per_page=10');
+const pages = await data.json();
+// const page = pages.find(item => item.link === 'https://myplanner.de/tmt/')
+const page = pages.find(item => item.link === 'https://hellewelle.de/spende')
+const modified = new Date(page.modified).toLocaleString('de-DE', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
+---
+
+<Layout title="TOS Media Team">
+	<div class="px-4 md:px-6 xl:text-lg text-gray-800 dark:text-gray-400">
+		<h1
+			class="font-bold dark:font-semibold break-words lg:break-normal text-gray-900 dark:text-gray-300 pt-6 pb-2 text-3xl md:text-4xl text-center">
+			{page.title.rendered}
+		</h1>
+		<p class="text-center text-sm md:text-base text-gray-600">aktualisiert am {modified}</p>
+
+		<section class="py-6" id="content" set:html={page.content.rendered}></section>
+
+		<footer class="flex justify-center py-6">
+			<img src="https://api.netlify.com/api/v1/badges/13a06c8c-d55d-455c-ba19-e24dcc607c53/deploy-status" width="135"
+				height="20" alt="Netlify Status">
+		</footer>
+	</div>
+</Layout>
