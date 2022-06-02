@@ -1,9 +1,11 @@
 ---
+import Nav from '../components/Nav.astro';
+import { siteName } from '../lib/api.js'
 export interface Props {
-	title: string;
+	title?: string;
 }
 
-const { title } = Astro.props as Props;
+const { title = siteName } = Astro.props as Props;
 ---
 
 <!DOCTYPE html>
@@ -18,7 +20,7 @@ const { title } = Astro.props as Props;
 
 <body class="bg-gray-100 dark:bg-midnight">
 	<nav class="fixed w-full z-10 top-0 bg-white dark:bg-gray-900 shadow">
-		App Nav
+		<Nav />
 	</nav>
 
 	<main class="container w-full mx-auto pt-20">

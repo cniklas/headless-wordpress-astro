@@ -1,15 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro'
+import { getHomePage } from '../lib/api.js'
+import { formatDate } from '../lib/dateTime.js'
 
-// const data = await fetch('https://myplanner.de/tmt/wp-json/wp/v2/pages?page=1&per_page=10');
-const data = await fetch('https://hellewelle.de/wp-json/wp/v2/pages?page=1&per_page=10');
-const pages = await data.json();
-// const page = pages.find(item => item.link === 'https://myplanner.de/tmt/')
-const page = pages.find(item => item.link === 'https://hellewelle.de/spende')
-const modified = new Date(page.modified).toLocaleString('de-DE', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
+const page = await getHomePage()
+const modified = formatDate(page.modified)
 ---
 
-<Layout title="TOS Media Team">
+<Layout>
 	<div class="px-4 md:px-6 xl:text-lg text-gray-800 dark:text-gray-400">
 		<h1
 			class="font-bold dark:font-semibold break-words lg:break-normal text-gray-900 dark:text-gray-300 pt-6 pb-2 text-3xl md:text-4xl text-center">

@@ -1,8 +1,8 @@
-# Welcome to [Astro](https://astro.build)
+# Headless TMT
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/starter)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/13a06c8c-d55d-455c-ba19-e24dcc607c53/deploy-status)](https://app.netlify.com/sites/tmt-plan/deploys)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Tutorial: [Convert WordPress to static using Astro](https://wpowls.co/articles/convert-wordpress-to-static-using-astro/)
 
 ## 🚀 Project Structure
 

@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteName, fetchAPI } from '../lib/api.js';
+import { formatDate } from '../lib/dateTime.js';
+
+export async function getStaticPaths() {
+	const pages = await fetchAPI();
+	const routes = pages.map(page => ({
+		params: { slug: page.slug },
+		props: { page }
+	}));
+
+	return routes
+}
+
+const { page } = Astro.props;
+const modified = formatDate(page.modified)
+---
+
+<Layout title={`${page.title.rendered} - ${siteName}`}>
+	<div class="px-4 md:px-6 xl:text-lg text-gray-800 dark:text-gray-400">
+		<h1
+			class="font-bold dark:font-semibold break-words lg:break-normal text-gray-900 dark:text-gray-300 pt-6 pb-2 text-3xl md:text-4xl text-center">
+			{page.title.rendered}
+		</h1>
+		<p class="text-center text-sm md:text-base text-gray-600">aktualisiert am {modified}</p>
+
+		<section class="py-6" id="content" set:html={page.content.rendered}></section>
+	</div>
+</Layout>

@@ -1,0 +1,77 @@
+---
+import { siteName } from '../lib/api.js';
+
+const staticLinks = [
+	{ url: 'https://tmt-ton.netlify.app', text: 'Ton' },
+	{ url: 'https://tmt-support.netlify.app', text: 'Support' },
+	{ url: 'https://myplanner.de/tmt/wp-admin', text: 'Login' },
+]
+---
+
+<div class="w-full md:max-w-4xl mx-auto flex flex-wrap items-center justify-between mt-0 py-3">
+	<div class="pl-4">
+		<a class="text-gray-900 dark:text-gray-400 font-bold text-xl" href="/">
+			{siteName}
+		</a>
+	</div>
+
+	<div class="block lg:hidden pr-4">
+		<!-- @click="navOpen = !navOpen" -->
+		<button
+			class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-900 dark-hover:text-gray-300 hover:border-teal-500 appearance-none focus:outline-none">
+			<svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+				<title>Menu</title>
+				<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+			</svg>
+		</button>
+	</div>
+
+	<!-- :class="{'hidden': !navOpen}" -->
+	<div class="w-full flex-grow lg:w-auto mt-2 lg:mt-0 bg-white dark:bg-gray-900 md:bg-transparent z-20 lg:block">
+		<ul class="list-reset lg:flex justify-end items-center">
+			<!-- <li
+				v-for="(page, i) in pages"
+				:key="`p${i}`"
+				class="lg:mr-3"
+				:class="{'lg:hidden': !page.slug}"
+			>
+				<nuxt-link
+					exact
+					:to="`/${page.slug}`"
+					class="block lg:inline-block py-2 px-4 text-gray-600 dark:text-gray-500 hover:text-gray-900 dark-hover:text-gray-300 hover:underline"
+					@click.native="navOpen = false"
+				>{{ page.title.rendered }}</nuxt-link>
+			</li> -->
+
+			{staticLinks.map(item => (
+			<li class="lg:mr-3">
+				<a class="block lg:inline-block py-2 px-4 text-gray-600 dark:text-gray-500 hover:text-gray-900 dark-hover:text-gray-300 hover:underline"
+					href={item.url}>{item.text}</a>
+			</li>
+			))}
+		</ul>
+	</div>
+</div>
+
+
+<style lang="postcss">
+	/* 🚩 TODO Nesting doesn't work correctly */
+	li .nuxt-link-active {
+		@apply text-gray-900 font-bold;
+
+		&:hover {
+			@apply no-underline;
+		}
+	}
+
+	.dark-mode li .nuxt-link-active {
+		@apply text-gray-300 font-semibold;
+	}
+
+	/* 🚩 TODO doesn't work */
+	/* @variants responsive {
+		.dark-mode .bg-transparent {
+			background-color: transparent;
+		}
+	} */
+</style>
