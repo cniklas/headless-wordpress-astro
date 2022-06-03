@@ -7,7 +7,7 @@ const page = await getHomePage()
 const modified = formatDate(page.modified)
 ---
 
-<Layout>
+<Layout slug={page.slug}>
 	<div class="px-4 md:px-6 xl:text-lg text-gray-800 dark:text-gray-400">
 		<h1
 			class="font-bold dark:font-semibold break-words lg:break-normal text-gray-900 dark:text-gray-300 pt-6 pb-2 text-3xl md:text-4xl text-center">

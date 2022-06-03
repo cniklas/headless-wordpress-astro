@@ -1,10 +1,10 @@
-const DOMAIN = import.meta.env.PUBLIC_DOMAIN
-const REST_URL = `${DOMAIN}/wp-json/wp/v2`
-const HOME_PAGE = `${DOMAIN}/`
+const WP_URL = import.meta.env.WP_URL
+const WP_HOME = `${WP_URL}/`
+const REST_URL = `${WP_URL}/wp-json/wp/v2`
 
 export const siteName = 'TOS Media Team'
 
-export const fetchAPI = async (query = 'pages') => {
+const fetchAPI = async (query = 'pages') => {
 	const response = await fetch(`${REST_URL}/${query}`)
 
 	if (response.ok) {
@@ -16,8 +16,15 @@ export const fetchAPI = async (query = 'pages') => {
 }
 
 export const getHomePage = async () => {
-	const pages = await fetchAPI('pages')
-	const page = pages.find(page => page.link === HOME_PAGE)
+	const response = await fetchAPI()
+	const page = response.find(item => item.link === WP_HOME)
 
 	return page
+}
+
+export const getAllExceptHomePage = async () => {
+	const response = await fetchAPI()
+	const pages = response.filter(item => item.link !== WP_HOME)
+
+	return pages
 }

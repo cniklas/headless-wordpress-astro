@@ -1,11 +1,17 @@
 ---
-import { siteName } from '../lib/api.js';
+import { siteName, getAllExceptHomePage } from '../lib/api.js';
+
+const pages = await getAllExceptHomePage();
+// 'Home' link for mobile nav
+pages.unshift({ slug: '', title: { rendered: 'Home' } });
 
 const staticLinks = [
 	{ url: 'https://tmt-ton.netlify.app', text: 'Ton' },
 	{ url: 'https://tmt-support.netlify.app', text: 'Support' },
 	{ url: 'https://myplanner.de/tmt/wp-admin', text: 'Login' },
 ]
+
+const { slug } = Astro.props;
 ---
 
 <div class="w-full md:max-w-4xl mx-auto flex flex-wrap items-center justify-between mt-0 py-3">
@@ -16,8 +22,7 @@ const staticLinks = [
 	</div>
 
 	<div class="block lg:hidden pr-4">
-		<!-- @click="navOpen = !navOpen" -->
-		<button
+		<button id="js-menu-button"
 			class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-900 dark-hover:text-gray-300 hover:border-teal-500 appearance-none focus:outline-none">
 			<svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 				<title>Menu</title>
@@ -26,22 +31,15 @@ const staticLinks = [
 		</button>
 	</div>
 
-	<!-- :class="{'hidden': !navOpen}" -->
-	<div class="w-full flex-grow lg:w-auto mt-2 lg:mt-0 bg-white dark:bg-gray-900 md:bg-transparent z-20 lg:block">
+	<div id="js-menu"
+		class="hidden w-full flex-grow lg:w-auto mt-2 lg:mt-0 bg-white dark:bg-gray-900 md:bg-transparent z-20 lg:block">
 		<ul class="list-reset lg:flex justify-end items-center">
-			<!-- <li
-				v-for="(page, i) in pages"
-				:key="`p${i}`"
-				class="lg:mr-3"
-				:class="{'lg:hidden': !page.slug}"
-			>
-				<nuxt-link
-					exact
-					:to="`/${page.slug}`"
-					class="block lg:inline-block py-2 px-4 text-gray-600 dark:text-gray-500 hover:text-gray-900 dark-hover:text-gray-300 hover:underline"
-					@click.native="navOpen = false"
-				>{{ page.title.rendered }}</nuxt-link>
-			</li> -->
+			{pages.map(item => (
+			<li class={`lg:mr-3 ${item.slug ? '' : 'lg:hidden' }`}>
+				<a class={`block lg:inline-block py-2 px-4 text-gray-600 dark:text-gray-500 hover:text-gray-900 dark-hover:text-gray-300 hover:underline ${item.slug === slug ? 'is-active' : ''}`}
+					href={`/${item.slug}`}>{item.title.rendered}</a>
+			</li>
+			))}
 
 			{staticLinks.map(item => (
 			<li class="lg:mr-3">
@@ -53,10 +51,8 @@ const staticLinks = [
 	</div>
 </div>
 
-
 <style lang="postcss">
-	/* 🚩 TODO Nesting doesn't work correctly */
-	li .nuxt-link-active {
+	.is-active {
 		@apply text-gray-900 font-bold;
 
 		&:hover {
@@ -64,9 +60,9 @@ const staticLinks = [
 		}
 	}
 
-	.dark-mode li .nuxt-link-active {
+	/* .dark-mode li .is-active {
 		@apply text-gray-300 font-semibold;
-	}
+	} */
 
 	/* 🚩 TODO doesn't work */
 	/* @variants responsive {
@@ -75,3 +71,17 @@ const staticLinks = [
 		}
 	} */
 </style>
+
+<script>
+	let clicked = false
+	const menu = document.querySelector('#js-menu')
+	const button = document.querySelector('#js-menu-button')
+	button.addEventListener('click', function () {
+		if (clicked) return
+		clicked = true
+		menu.classList.toggle('hidden')
+		setTimeout(function () {
+			clicked = false
+		}, 100)
+	})
+</script>
