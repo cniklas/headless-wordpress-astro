@@ -1,6 +1,7 @@
 ---
 import Nav from '../components/Nav.astro'
 import { siteName } from '../lib/api.js'
+import '../styles/global.css'
 export interface Props {
 	title?: string;
 	slug: string;
@@ -19,7 +20,7 @@ const { title = siteName, slug } = Astro.props as Props
 	<title>{title}</title>
 </head>
 
-<body class="bg-gray-100 dark:bg-midnight">
+<body class="bg-gray-100 dark:bg-[#0f0f17]">
 	<nav class="fixed w-full z-10 top-0 bg-white dark:bg-gray-900 shadow">
 		<Nav slug={slug} />
 	</nav>
@@ -29,3 +30,12 @@ const { title = siteName, slug } = Astro.props as Props
 	</main>
 </body>
 </html>
+
+<style>
+@media (prefers-color-scheme: dark) {
+	.shadow {
+		/* = `shadow-md` */
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.46);
+	}
+}
+</style>

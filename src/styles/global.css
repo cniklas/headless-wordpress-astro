@@ -1,0 +1,138 @@
+.wp-block-table {
+	@apply overflow-x-auto;
+
+	/* >= 1440 */
+	@media (min-width: 90em) {
+		@apply -mx-20;
+	}
+}
+
+table {
+	@apply table-auto w-full;
+
+	.wp-block-table & {
+		width: calc(100% - 1px);
+	}
+}
+
+th,
+td {
+	@apply py-2 px-3;
+}
+
+thead th {
+	@apply font-bold text-center;
+	@apply align-bottom;
+}
+
+td {
+	@apply border border-solid border-gray-300;
+	@apply align-top;
+}
+
+tbody tr:nth-of-type(odd) {
+	@apply bg-white;
+}
+
+/* < 1024 */
+@media (max-width: 63.9375em) {
+	table {
+		@apply overflow-hidden;
+	}
+
+	tbody tr {
+		@apply border-t border-solid border-gray-300;
+		@apply block;
+		padding-top: 0.6rem;
+		padding-bottom: 0.6rem;
+	}
+
+	tbody td {
+		@apply flex;
+		border: 0;
+		padding-top: 0.125rem;
+		padding-bottom: 0.125rem;
+	}
+
+	tbody td[data-th]:before {
+		content: attr(data-th) ': ';
+		flex: 0 0 auto;
+		@apply font-semibold;
+		@apply overflow-hidden;
+		padding-right: 0.6rem;
+		text-overflow: ellipsis;
+		width: min(38.2%, 10rem);
+	}
+
+	thead th,
+	tbody td:empty,
+	tbody td[data-th='']:before {
+		@apply hidden;
+	}
+
+	tbody td:first-child[data-th=''] {
+		@apply block;
+		@apply text-gray-900 font-semibold uppercase;
+		letter-spacing: 0.125rem;
+	}
+
+	tbody td:first-child[data-th=''] br {
+		content: ' ';
+
+		&::after {
+			content: ' ';
+			display: inherit;
+		}
+	}
+}
+
+.wp-block-file a {
+	@apply bg-blue-500 text-white;
+	@apply py-2 px-4;
+	@apply border-b-4 border-blue-700 rounded;
+	@apply text-lg;
+
+	/* >= 1024 */
+	@screen lg {
+		@apply text-xl;
+	}
+
+	&:hover {
+		@apply bg-blue-400;
+		@apply border-blue-500;
+	}
+}
+
+#content > p {
+	@apply mb-6;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+	thead th {
+		@apply font-semibold;
+	}
+
+	td {
+		@apply border-gray-700;
+	}
+
+	tbody tr:nth-of-type(odd) {
+		@apply bg-gray-900;
+	}
+}
+
+/* Dark Mode < 1024 */
+@media (prefers-color-scheme: dark) and (max-width: 63.9375em) {
+	tbody tr {
+		@apply border-gray-700;
+	}
+
+	tbody td[data-th]:before {
+		@apply font-normal;
+	}
+
+	tbody td:first-child[data-th=''] {
+		@apply text-gray-300 font-medium;
+	}
+}

@@ -54,21 +54,14 @@ const { slug } = Astro.props;
 	.is-active {
 		@apply text-gray-900 font-bold;
 
+		@media (prefers-color-scheme: dark) {
+			@apply text-gray-300 font-semibold;
+		}
+
 		&:hover {
 			@apply no-underline;
 		}
 	}
-
-	/* .dark-mode li .is-active {
-		@apply text-gray-300 font-semibold;
-	} */
-
-	/* 🚩 TODO doesn't work */
-	/* @variants responsive {
-		.dark-mode .bg-transparent {
-			background-color: transparent;
-		}
-	} */
 </style>
 
 <script>
