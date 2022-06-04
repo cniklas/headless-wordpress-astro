@@ -21,11 +21,11 @@ const { slug, title } = Astro.props as Props
 </head>
 
 <body class="bg-gray-100 dark:bg-[#0f0f17]">
-	<nav class="fixed w-full z-10 top-0 bg-white dark:bg-gray-900 shadow">
+	<nav class="fixed top-0 z-10 w-full bg-white shadow dark:bg-gray-900">
 		<Nav slug={slug} />
 	</nav>
 
-	<main class="container w-full max-w-7xl mx-auto pt-20">
+	<main class="container mx-auto w-full max-w-7xl pt-20">
 		<slot />
 	</main>
 </body>

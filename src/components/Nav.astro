@@ -12,17 +12,17 @@ const staticLinks = [
 const { slug } = Astro.props;
 ---
 
-<div class="w-full md:max-w-4xl mx-auto flex flex-wrap items-center justify-between mt-0 py-3">
+<div class="mx-auto mt-0 flex w-full flex-wrap items-center justify-between py-3 md:max-w-4xl">
 	<div class="pl-4">
-		<a class="text-gray-900 dark:text-gray-400 font-bold text-xl" href="/">
+		<a class="text-xl font-bold text-gray-900 dark:text-gray-400" href="/">
 			{siteName}
 		</a>
 	</div>
 
-	<div class="block lg:hidden pr-4">
+	<div class="block pr-4 lg:hidden">
 		<button id="js-menu-button"
-			class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-900 dark-hover:text-gray-300 hover:border-teal-500 appearance-none focus:outline-none">
-			<svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+			class="dark-hover:text-gray-300 flex appearance-none items-center rounded border border-gray-600 px-3 py-2 text-gray-500 hover:border-teal-500 hover:text-gray-900 focus:outline-none">
+			<svg class="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 				<title>Menu</title>
 				<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
 			</svg>
@@ -30,8 +30,8 @@ const { slug } = Astro.props;
 	</div>
 
 	<div id="js-menu"
-		class="hidden w-full flex-grow lg:w-auto mt-2 lg:mt-0 bg-white dark:bg-gray-900 md:bg-transparent z-20 lg:block">
-		<ul class="list-reset lg:flex justify-end items-center">
+		class="z-20 mt-2 hidden w-full flex-grow bg-white dark:bg-gray-900 md:bg-transparent lg:mt-0 lg:block lg:w-auto">
+		<ul class="list-reset items-center justify-end lg:flex">
 			{pages.map(item => (
 			<li class={`lg:mr-3 ${item.isHome ? 'lg:hidden' : '' }`}>
 				<a class={`block lg:inline-block py-2 px-4 text-gray-600 dark:text-gray-500 hover:text-gray-900
@@ -42,7 +42,7 @@ const { slug } = Astro.props;
 
 			{staticLinks.map(item => (
 			<li class="lg:mr-3">
-				<a class="block lg:inline-block py-2 px-4 text-gray-600 dark:text-gray-500 hover:text-gray-900 dark-hover:text-gray-300 hover:underline"
+				<a class="dark-hover:text-gray-300 block py-2 px-4 text-gray-600 hover:text-gray-900 hover:underline dark:text-gray-500 lg:inline-block"
 					href={item.url}>{item.text}</a>
 			</li>
 			))}
