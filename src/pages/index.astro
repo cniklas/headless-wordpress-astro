@@ -9,12 +9,12 @@ const content = processTable(page.content.rendered)
 ---
 
 <Layout slug={page.slug}>
-	<div class="px-4 text-gray-800 dark:text-gray-400 md:px-6 xl:text-lg xl:leading-normal">
+	<div class="px-4 text-tmtGray-800 dark:text-tmtGray-400 md:px-6 xl:text-lg xl:leading-normal">
 		<h1
-			class="break-words pt-6 pb-2 text-center text-3xl font-bold leading-normal text-gray-900 dark:font-semibold dark:text-gray-300 md:text-4xl md:leading-normal lg:break-normal">
+			class="break-words pt-6 pb-2 text-center text-3xl font-bold dark:font-semibold leading-normal text-tmtGray-900 dark:text-tmtGray-300 md:text-4xl md:leading-normal lg:break-normal">
 			{page.title.rendered}
 		</h1>
-		<p class="text-center text-sm leading-normal text-gray-600 md:text-base">aktualisiert am {modified}</p>
+		<p class="text-center text-sm leading-normal text-tmtGray-600 md:text-base">aktualisiert am {modified}</p>
 
 		<section id="content" class="py-6" set:html={content} />
 

@@ -20,8 +20,8 @@ const { slug, title } = Astro.props as Props
 	<title>{title ? `${title} - ${siteName}` : siteName}</title>
 </head>
 
-<body class="bg-gray-100 dark:bg-[#0f0f17]">
-	<nav class="fixed top-0 z-10 w-full bg-white shadow dark:bg-gray-900">
+<body class="bg-tmtGray-100 dark:bg-[#0f0f17]">
+	<nav class="fixed top-0 z-10 w-full bg-white dark:bg-tmtGray-900 shadow">
 		<Nav slug={slug} />
 	</nav>
 
@@ -32,10 +32,10 @@ const { slug, title } = Astro.props as Props
 </html>
 
 <style>
-@media (prefers-color-scheme: dark) {
-	.shadow {
-		/* = `shadow-md` */
-		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.46);
+	@media (prefers-color-scheme: dark) {
+		.shadow {
+			/* = `shadow-md` */
+			box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.46);
+		}
 	}
-}
 </style>
