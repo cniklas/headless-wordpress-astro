@@ -50,20 +50,6 @@ const { slug } = Astro.props;
 	</div>
 </div>
 
-<style lang="postcss">
-	.is-active {
-		@apply text-gray-900 font-bold;
-
-		@media (prefers-color-scheme: dark) {
-			@apply text-gray-300 font-semibold;
-		}
-
-		&:hover {
-			@apply no-underline;
-		}
-	}
-</style>
-
 <script>
 	let clicked = false
 	const menu = document.querySelector('#js-menu')
@@ -77,3 +63,17 @@ const { slug } = Astro.props;
 		}, 100)
 	})
 </script>
+
+<style lang="postcss">
+	.is-active {
+		@apply text-gray-900 font-bold;
+
+		@media (prefers-color-scheme: dark) {
+			@apply text-gray-300 font-semibold;
+		}
+
+		&:hover {
+			@apply no-underline;
+		}
+	}
+</style>

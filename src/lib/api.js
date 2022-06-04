@@ -1,3 +1,4 @@
+import jsdom from 'jsdom'
 const WP_URL = import.meta.env.WP_URL
 const WP_HOME = `${WP_URL}/`
 const REST_URL = `${WP_URL}/wp-json/wp/v2`
@@ -42,4 +43,32 @@ export const getAllExceptHomePage = async () => {
 	const pages = response.filter(item => item.link !== WP_HOME)
 
 	return pages
+}
+
+export const processTable = content => {
+	// https://stackoverflow.com/a/55668667/3870081
+	const dom = new jsdom.JSDOM(content).window.document
+	const table = dom.querySelector('table')
+	if (!table) return content
+
+	const headers = []
+	const thead = table.querySelector('thead')
+	const tbody = table.querySelector('tbody')
+	let cellList
+
+	if (thead) {
+		cellList = thead.querySelectorAll('th')
+		for (const cell of cellList) {
+			headers.push(cell.textContent.trim() || '')
+		}
+	}
+
+	if (tbody && headers.length) {
+		cellList = tbody.querySelectorAll('td')
+		for (const cell of cellList) {
+			cell.dataset.th = headers[cell.cellIndex]
+		}
+	}
+
+	return dom.body.innerHTML
 }

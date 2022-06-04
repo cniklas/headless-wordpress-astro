@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { siteName, getAllExceptHomePage } from '../lib/api.js';
+import { getAllExceptHomePage, processTable } from '../lib/api.js';
 import { formatDate } from '../lib/dateTime.js';
 
 export async function getStaticPaths() {
@@ -14,9 +14,10 @@ export async function getStaticPaths() {
 }
 
 const { page, modified } = Astro.props;
+const content = processTable(page.content.rendered)
 ---
 
-<Layout title={`${page.title.rendered} - ${siteName}`} slug={page.slug}>
+<Layout slug={page.slug} title={page.title.rendered}>
 	<div class="px-4 md:px-6 xl:text-lg text-gray-800 dark:text-gray-400">
 		<h1
 			class="font-bold dark:font-semibold break-words lg:break-normal text-gray-900 dark:text-gray-300 pt-6 pb-2 text-3xl md:text-4xl text-center">
@@ -24,6 +25,6 @@ const { page, modified } = Astro.props;
 		</h1>
 		<p class="text-center text-sm md:text-base text-gray-600">aktualisiert am {modified}</p>
 
-		<section class="py-6" id="content" set:html={page.content.rendered}></section>
+		<section class="py-6" set:html={content} />
 	</div>
 </Layout>

@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { getHomePage } from '../lib/api.js'
+import { getHomePage, processTable } from '../lib/api.js'
 import { formatDate } from '../lib/dateTime.js'
 
 const page = await getHomePage()
 const modified = formatDate(page.modified)
+const content = processTable(page.content.rendered)
 ---
 
 <Layout slug={page.slug}>
@@ -15,7 +16,7 @@ const modified = formatDate(page.modified)
 		</h1>
 		<p class="text-center text-sm md:text-base text-gray-600">aktualisiert am {modified}</p>
 
-		<section class="py-6" id="content" set:html={page.content.rendered}></section>
+		<section class="py-6" set:html={content} />
 
 		<footer class="flex justify-center py-6">
 			<img src="https://api.netlify.com/api/v1/badges/13a06c8c-d55d-455c-ba19-e24dcc607c53/deploy-status" width="135"

@@ -3,11 +3,11 @@ import Nav from '../components/Nav.astro'
 import { siteName } from '../lib/api.js'
 import '../styles/global.css'
 export interface Props {
-	title?: string;
 	slug: string;
+	title?: string;
 }
 
-const { title = siteName, slug } = Astro.props as Props
+const { slug, title } = Astro.props as Props
 ---
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ const { title = siteName, slug } = Astro.props as Props
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="noindex, nofollow">
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-	<title>{title}</title>
+	<title>{title ? `${title} - ${siteName}` : siteName}</title>
 </head>
 
 <body class="bg-gray-100 dark:bg-[#0f0f17]">
