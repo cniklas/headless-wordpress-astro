@@ -1,9 +1,7 @@
 ---
-import { siteName, getAllExceptHomePage } from '../lib/api.js';
+import { siteName, getPages } from '../lib/api.js';
 
-const pages = await getAllExceptHomePage();
-// 'Home' link for mobile nav
-pages.unshift({ slug: '', title: { rendered: 'Home' } });
+const pages = await getPages()
 
 const staticLinks = [
 	{ url: 'https://tmt-ton.netlify.app', text: 'Ton' },
@@ -35,9 +33,10 @@ const { slug } = Astro.props;
 		class="hidden w-full flex-grow lg:w-auto mt-2 lg:mt-0 bg-white dark:bg-gray-900 md:bg-transparent z-20 lg:block">
 		<ul class="list-reset lg:flex justify-end items-center">
 			{pages.map(item => (
-			<li class={`lg:mr-3 ${item.slug ? '' : 'lg:hidden' }`}>
-				<a class={`block lg:inline-block py-2 px-4 text-gray-600 dark:text-gray-500 hover:text-gray-900 dark-hover:text-gray-300 hover:underline ${item.slug === slug ? 'is-active' : ''}`}
-					href={`/${item.slug}`}>{item.title.rendered}</a>
+			<li class={`lg:mr-3 ${item.isHome ? 'lg:hidden' : '' }`}>
+				<a class={`block lg:inline-block py-2 px-4 text-gray-600 dark:text-gray-500 hover:text-gray-900
+					dark-hover:text-gray-300 hover:underline ${item.slug===slug ? 'is-active' : '' }`} href={`/${item.isHome ? ''
+					: item.slug}`}>{item.isHome ? 'Home' : item.title.rendered}</a>
 			</li>
 			))}
 
