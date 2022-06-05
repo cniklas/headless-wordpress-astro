@@ -3,7 +3,7 @@ const WP_URL = import.meta.env.WP_URL
 const WP_HOME = `${WP_URL}/`
 const REST_URL = `${WP_URL}/wp-json/wp/v2`
 
-export const siteName = 'TOS Media Team'
+export const siteName = import.meta.env.WP_TITLE
 
 const fetchAPI = async (query = 'pages') => {
 	const response = await fetch(`${REST_URL}/${query}`)
