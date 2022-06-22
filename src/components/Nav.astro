@@ -1,7 +1,7 @@
 ---
-import { siteName, getPages } from '../lib/api.js';
+import { siteName, buildNavi } from '../lib/api.js';
 
-const pages = await getPages()
+const navi = await buildNavi()
 
 const staticLinks = [
 	{ url: 'https://tmt-ton.netlify.app', text: 'Ton' },
@@ -32,7 +32,7 @@ const { slug } = Astro.props;
 	<div id="js-menu"
 		class="z-20 mt-2 hidden w-full flex-grow bg-white dark:bg-tmtGray-900 md:bg-transparent lg:mt-0 lg:block lg:w-auto">
 		<ul class="list-reset items-center justify-end lg:flex">
-			{pages.map(item => (
+			{navi.map(item => (
 			<li class={`lg:mr-3 ${item.isHome ? 'lg:hidden' : '' }`}>
 				<a class={`block lg:inline-block py-2 px-4 text-tmtGray-600 hover:text-tmtGray-900 dark:text-tmtGray-500
 					dark:hover:text-tmtGray-300 hover:underline ${item.slug===slug ? 'is-active' : '' }`} href={`/${item.isHome
