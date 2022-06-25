@@ -4,6 +4,7 @@ const WP_HOME = `${WP_URL}/`
 const REST_URL = `${WP_URL}/wp-json/wp/v2`
 
 export const siteName = import.meta.env.WP_TITLE
+export const wpAdmin = `${WP_URL}/admin`
 
 const _fetchAPI = async (query = 'pages') => {
 	const response = await fetch(`${REST_URL}/${query}`)

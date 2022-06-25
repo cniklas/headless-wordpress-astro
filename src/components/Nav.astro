@@ -1,12 +1,12 @@
 ---
-import { siteName, buildNavi } from '../lib/api.js';
+import { siteName, wpAdmin, buildNavi } from '../lib/api.js';
 
 const navi = await buildNavi()
 
 const staticLinks = [
 	{ url: 'https://tmt-ton.netlify.app', text: 'Ton' },
 	{ url: 'https://tmt-support.netlify.app', text: 'Support' },
-	{ url: 'https://myplanner.de/tmt/wp-admin', text: 'Login' },
+	{ url: wpAdmin, text: 'Login' },
 ]
 
 const { slug } = Astro.props;
