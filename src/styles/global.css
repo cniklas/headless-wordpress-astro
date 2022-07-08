@@ -21,13 +21,11 @@ td {
 }
 
 thead th {
-	@apply font-bold text-center;
-	@apply align-bottom;
+	@apply font-semibold text-center align-bottom;
 }
 
 td {
-	@apply border border-solid border-tmtGray-300;
-	@apply align-top;
+	@apply border border-solid border-tmtGray-300 align-top;
 }
 
 tbody tr:nth-of-type(odd) {
@@ -41,8 +39,7 @@ tbody tr:nth-of-type(odd) {
 	}
 
 	tbody tr {
-		@apply border-t border-solid border-tmtGray-300;
-		@apply block;
+		@apply block border-t border-solid border-tmtGray-300;
 		padding-top: 0.6rem;
 		padding-bottom: 0.6rem;
 	}
@@ -56,9 +53,7 @@ tbody tr:nth-of-type(odd) {
 
 	tbody td[data-th]:before {
 		content: attr(data-th) ': ';
-		flex: 0 0 auto;
-		@apply font-semibold;
-		@apply overflow-hidden;
+		@apply shrink-0 font-semibold overflow-hidden;
 		padding-right: 0.6rem;
 		text-overflow: ellipsis;
 		width: min(38.2%, 10rem);
@@ -71,8 +66,7 @@ tbody tr:nth-of-type(odd) {
 	}
 
 	tbody td:first-child[data-th=''] {
-		@apply block;
-		@apply text-tmtGray-900 font-semibold uppercase;
+		@apply block text-tmtGray-900 font-semibold uppercase;
 		letter-spacing: 0.125rem;
 	}
 
@@ -87,10 +81,7 @@ tbody tr:nth-of-type(odd) {
 }
 
 .wp-block-file a {
-	@apply bg-blue-500 text-white;
-	@apply py-2 px-4;
-	@apply border-b-4 border-blue-700 rounded;
-	@apply text-lg;
+	@apply bg-blue-500 text-white py-2 px-4 border-b-4 border-blue-700 rounded text-lg;
 
 	/* >= 1024 */
 	@screen lg {
@@ -98,8 +89,7 @@ tbody tr:nth-of-type(odd) {
 	}
 
 	&:hover {
-		@apply bg-blue-400;
-		@apply border-blue-500;
+		@apply bg-blue-400 border-blue-500;
 	}
 }
 
