@@ -1,24 +1,24 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getAllExceptHomePage, processTable } from '../lib/api.js';
-import { formatDate } from '../lib/dateTime.js';
+import Layout from '../layouts/Layout.astro'
+import { getAllExceptHomePage, processTable } from '../lib/api.js'
+import { formatDate } from '../lib/dateTime.js'
 
 export async function getStaticPaths() {
-	const pages = await getAllExceptHomePage();
+	const pages = await getAllExceptHomePage()
 	const routes = pages.map(page => ({
 		params: { slug: page.slug },
-		props: { page, modified: formatDate(page.modified) }
-	}));
+		props: { page, modified: formatDate(page.modified) },
+	}))
 
 	return routes
 }
 
-const { page, modified } = Astro.props;
+const { page, modified } = Astro.props
 const content = processTable(page.content.rendered)
 ---
 
 <Layout slug={page.slug} title={page.title.rendered}>
-	<div class="px-4 text-tmtGray-800 dark:text-tmtGray-400 md:px-6 xl:text-lg xl:leading-normal">
+	<div class="px-4 text-tmtGray-800 dark:text-tmtGray-400 lg:px-6 xl:text-lg xl:leading-normal">
 		<h1
 			class="break-words pt-6 pb-2 text-center text-3xl font-bold dark:font-semibold leading-normal text-tmtGray-900 dark:text-tmtGray-300 md:text-4xl md:leading-normal lg:break-normal">
 			{page.title.rendered}
