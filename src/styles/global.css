@@ -1,5 +1,10 @@
 .wp-block-table {
-	@apply overflow-x-auto;
+	@apply -mx-4;
+
+	/* >= 1024 */
+	@screen lg {
+		@apply overflow-x-auto mx-0;
+	}
 
 	/* >= 1440 */
 	@media (min-width: 90em) {
@@ -10,8 +15,10 @@
 table {
 	@apply table-auto w-full;
 
-	.wp-block-table & {
-		width: calc(100% - 1px);
+	@screen lg {
+		.wp-block-table & {
+			width: calc(100% - 1px);
+		}
 	}
 }
 
@@ -25,7 +32,7 @@ thead th {
 }
 
 td {
-	@apply border border-solid border-tmtGray-300 align-top;
+	@apply border border-tmtGray-300 align-top;
 }
 
 tbody tr:nth-of-type(odd) {
@@ -39,9 +46,13 @@ tbody tr:nth-of-type(odd) {
 	}
 
 	tbody tr {
-		@apply block border-t border-solid border-tmtGray-300;
+		@apply block border-t border-tmtGray-300;
 		padding-top: 0.6rem;
 		padding-bottom: 0.6rem;
+
+		&:last-child {
+			@apply border-b;
+		}
 	}
 
 	tbody td {
@@ -83,7 +94,6 @@ tbody tr:nth-of-type(odd) {
 .wp-block-file a {
 	@apply bg-blue-500 text-white py-2 px-4 border-b-4 border-blue-700 rounded text-lg;
 
-	/* >= 1024 */
 	@screen lg {
 		@apply text-xl;
 	}
