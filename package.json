@@ -16,7 +16,7 @@
   "devDependencies": {
     "@astrojs/tailwind": "^1.0.1",
     "astro": "^1.4.2",
-    "jsdom": "^20.0.0"
+    "jsdom": "^20.0.2"
   },
   "prettier": {
     "printWidth": 120,
