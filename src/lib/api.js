@@ -1,4 +1,4 @@
-import jsdom from 'jsdom'
+import { parse } from 'node-html-parser'
 const WP_URL = import.meta.env.WP_URL
 const WP_HOME = `${WP_URL}/`
 const REST_URL = `${WP_URL}/wp-json/wp/v2`
@@ -49,17 +49,14 @@ export const getAllExceptHomePage = async () => {
 export const buildNavi = async () => {
 	const response = await _getPages()
 	// make sure, 'Home' always comes first
-	const navi = [
-		response.find(item => item.isHome),
-		...response.filter(item => !item.isHome),
-	]
+	const navi = [response.find(item => item.isHome), ...response.filter(item => !item.isHome)]
 
 	return navi
 }
 
 export const processTable = content => {
-	// https://stackoverflow.com/a/55668667/3870081
-	const dom = new jsdom.JSDOM(content).window.document
+	// https://github.com/taoqf/node-html-parser
+	const dom = parse(content)
 	const table = dom.querySelector('table')
 	if (!table) return content
 
@@ -74,13 +71,18 @@ export const processTable = content => {
 			headers.push(cell.textContent.trim() || '')
 		}
 	}
+	const headersLength = headers.length
 
-	if (tbody && headers.length) {
+	if (tbody && headersLength) {
 		cellList = tbody.querySelectorAll('td')
-		for (const cell of cellList) {
-			cell.dataset.th = headers[cell.cellIndex]
-		}
+		// for (const cell of cellList) {
+		// 	cell.dataset.th = headers[cell.cellIndex]
+		// }
+		cellList.forEach((cell, i) => {
+			const j = i % headersLength
+			cell.setAttribute('data-th', headers[j])
+		})
 	}
 
-	return dom.body.innerHTML
+	return dom.innerHTML
 }
