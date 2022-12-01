@@ -16,7 +16,7 @@
   "devDependencies": {
     "@astrojs/tailwind": "^1.0.1",
     "astro": "^1.6.12",
-    "node-html-parser": "^6.1.1"
+    "node-html-parser": "^6.1.4"
   },
   "prettier": {
     "printWidth": 120,
