@@ -11,7 +11,8 @@ const content = processTable(page.content.rendered)
 <Layout slug={page.slug}>
 	<div class="px-4 text-tmtGray-800 dark:text-tmtGray-400 lg:px-6 xl:text-lg xl:leading-normal">
 		<h1
-			class="break-words pt-6 pb-2 text-center text-3xl font-bold dark:font-semibold leading-normal text-tmtGray-900 dark:text-tmtGray-300 md:text-4xl md:leading-normal lg:break-normal">
+			class="break-words pt-6 pb-2 text-center text-3xl font-bold dark:font-semibold leading-normal text-tmtGray-900 dark:text-tmtGray-300 md:text-4xl md:leading-normal lg:break-normal"
+		>
 			{page.title.rendered}
 		</h1>
 		<p class="text-center text-sm leading-normal text-tmtGray-600 md:text-base">aktualisiert am {modified}</p>
@@ -19,8 +20,13 @@ const content = processTable(page.content.rendered)
 		<section id="content" class="py-6" set:html={content} />
 
 		<footer class="flex justify-center py-6">
-			<img src="https://api.netlify.com/api/v1/badges/13a06c8c-d55d-455c-ba19-e24dcc607c53/deploy-status" width="135"
-				height="20" alt="Netlify Status" />
+			<img
+				src="https://api.netlify.com/api/v1/badges/13a06c8c-d55d-455c-ba19-e24dcc607c53/deploy-status"
+				class="text-sm text-center"
+				width="135"
+				height="20"
+				alt="Netlify Status"
+			/>
 		</footer>
 	</div>
 </Layout>
