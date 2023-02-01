@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@astrojs/tailwind": "^1.0.1",
-    "astro": "^1.8.0",
+    "astro": "^2.0.4",
     "node-html-parser": "^6.1.4"
   },
   "prettier": {
