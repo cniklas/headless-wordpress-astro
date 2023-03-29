@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config'
-import tailwind from '@astrojs/tailwind'
+import windi from 'astro-windi'
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [tailwind()],
+	integrations: [windi()],
 	// site: 'https://tmt-plan.netlify.app/',
 	// server: (command) => ({port: command === 'dev' ? 3000 : 4000}),
 })
