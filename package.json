@@ -1,6 +1,6 @@
 {
   "name": "headless-tmt",
-  "version": "3.4.1",
+  "version": "3.5.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/cniklas/headless-tmt-astro.git"
@@ -14,11 +14,9 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@astrojs/tailwind": "^3.0.1",
     "astro": "^2.0.16",
-    "node-html-parser": "^6.1.5",
-    "postcss": "^8.0.9",
-    "tailwindcss": "^3.2.7"
+    "astro-windi": "^0.0.2",
+    "node-html-parser": "^6.1.5"
   },
   "prettier": {
     "printWidth": 120,
