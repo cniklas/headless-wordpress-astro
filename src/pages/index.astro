@@ -9,20 +9,22 @@ const content = processTable(page.content.rendered)
 ---
 
 <Layout slug={page.slug}>
-	<div class="px-4 text-tmtGray-800 dark:text-tmtGray-400 lg:px-6 xl:text-lg xl:leading-normal">
+	<div class="text-tmtGray-800 dark:text-tmtGray-400 px-4 lg:px-6">
 		<h1
-			class="break-words pt-6 pb-2 text-center text-3xl font-bold dark:font-semibold leading-normal text-tmtGray-900 dark:text-tmtGray-300 md:text-4xl md:leading-normal lg:break-normal"
+			class="text-tmtGray-900 dark:text-tmtGray-300 break-words pb-1 pt-3 text-center text-3xl font-bold leading-normal dark:font-semibold md:pb-2 md:text-4xl md:leading-normal lg:break-normal lg:pt-6"
 		>
 			{page.title.rendered}
 		</h1>
-		<p class="text-center text-sm leading-normal text-tmtGray-600 md:text-base">aktualisiert am {modified}</p>
+		<p class="text-tmtGray-650 dark:text-tmtGray-600 text-center text-sm leading-normal md:text-base">
+			aktualisiert am {modified}
+		</p>
 
-		<section id="content" class="py-6" set:html={content} />
+		<section id="content" class="pb-6 pt-9 lg:pt-10" set:html={content} />
 
 		<footer class="flex justify-center py-6">
 			<img
 				src="https://api.netlify.com/api/v1/badges/13a06c8c-d55d-455c-ba19-e24dcc607c53/deploy-status"
-				class="text-sm text-center"
+				class="text-center text-sm"
 				width="118"
 				height="20"
 				alt="Netlify Status"
