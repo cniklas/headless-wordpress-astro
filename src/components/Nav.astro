@@ -20,32 +20,50 @@ const { slug } = Astro.props
 	</div>
 
 	<div class="pr-4 lg:hidden">
-		<button id="js-menu-button"
-			class="flex appearance-none items-center rounded border border-tmtGray-600 hover:border-teal-500 px-3 py-2 text-tmtGray-500 hover:text-tmtGray-900 dark:hover:text-tmtGray-300 focus:outline-none">
-			<svg class="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-				<title>Menu</title>
-				<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+		<button
+			id="js-menu-button"
+			type="button"
+			aria-label="Tweet!"
+			class="flex appearance-none items-center rounded border border-tmtGray-600 hover:border-teal-500 px-3 py-2 text-tmtGray-500 hover:text-tmtGray-900 dark:hover:text-tmtGray-300 focus:outline-none"
+		>
+			<svg aria-hidden="true" class="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+				<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
 			</svg>
 		</button>
 	</div>
 
-	<div id="js-menu"
-		class="z-20 mt-2 hidden w-full grow bg-white dark:bg-tmtGray-900 md:bg-transparent lg:mt-0 lg:block lg:w-auto">
+	<div
+		id="js-menu"
+		class="z-20 mt-2 hidden w-full grow bg-white dark:bg-tmtGray-900 md:bg-transparent lg:mt-0 lg:block lg:w-auto"
+	>
 		<ul class="items-center justify-end lg:flex">
-			{navi.map(item => (
-			<li class={`lg:mr-3 ${item.isHome ? 'lg:hidden' : '' }`}>
-				<a class={`block lg:inline-block py-2 px-4 text-tmtGray-600 hover:text-tmtGray-900 dark:text-tmtGray-500
-					dark:hover:text-tmtGray-300 hover:underline ${item.slug===slug ? 'is-active' : '' }`} href={`/${item.isHome
-					? '' : item.slug}`}>{item.isHome ? 'Home' : item.title.rendered}</a>
-			</li>
-			))}
+			{
+				navi.map(item => (
+					<li class={`lg:mr-3 ${item.isHome ? 'lg:hidden' : ''}`}>
+						<a
+							class={`block lg:inline-block py-2 px-4 text-tmtGray-600 hover:text-tmtGray-900 dark:text-tmtGray-500 dark:hover:text-tmtGray-300 hover:underline ${
+								item.slug === slug ? 'is-active' : ''
+							}`}
+							href={`/${item.isHome ? '' : item.slug}`}
+						>
+							{item.isHome ? 'Home' : item.title.rendered}
+						</a>
+					</li>
+				))
+			}
 
-			{staticLinks.map(item => (
-			<li class="lg:mr-3">
-				<a class="block lg:inline-block py-2 px-4 text-tmtGray-600 hover:text-tmtGray-900 dark:text-tmtGray-500 dark:hover:text-tmtGray-300 hover:underline"
-					href={item.url}>{item.text}</a>
-			</li>
-			))}
+			{
+				staticLinks.map(item => (
+					<li class="lg:mr-3">
+						<a
+							class="block lg:inline-block py-2 px-4 text-tmtGray-600 hover:text-tmtGray-900 dark:text-tmtGray-500 dark:hover:text-tmtGray-300 hover:underline"
+							href={item.url}
+						>
+							{item.text}
+						</a>
+					</li>
+				))
+			}
 		</ul>
 	</div>
 </div>
