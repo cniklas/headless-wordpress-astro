@@ -1,4 +1,4 @@
-import { parse } from 'node-html-parser'
+import { parse, insertAdjacentHTML } from 'node-html-parser'
 const WP_URL = import.meta.env.WP_URL
 const WP_HOME = `${WP_URL}/`
 const REST_URL = `${WP_URL}/wp-json/wp/v2`
@@ -70,6 +70,8 @@ export const processTable = content => {
 		for (const cell of cellList) {
 			headers.push(cell.textContent.trim() || '')
 		}
+
+		table.insertAdjacentHTML('beforeend', `<tfoot>${thead.innerHTML}</tfoot>`)
 	}
 	const headersLength = headers.length
 
