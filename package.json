@@ -14,7 +14,7 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "astro": "^2.3.2",
+    "astro": "^2.5.6",
     "astro-windi": "^0.0.2",
     "node-html-parser": "^6.1.5"
   },
