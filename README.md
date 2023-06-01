@@ -1,7 +1,5 @@
 # Headless TMT
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/13a06c8c-d55d-455c-ba19-e24dcc607c53/deploy-status)](https://app.netlify.com/sites/tmt-plan/deploys)
-
 Tutorial: [Convert WordPress to static using Astro](https://wpowls.co/articles/convert-wordpress-to-static-using-astro/)
 
 ## 🚀 Project Structure

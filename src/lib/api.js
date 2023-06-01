@@ -1,4 +1,4 @@
-import { parse, insertAdjacentHTML } from 'node-html-parser'
+import { parse } from 'node-html-parser'
 const WP_URL = import.meta.env.WP_URL
 const WP_HOME = `${WP_URL}/`
 const REST_URL = `${WP_URL}/wp-json/wp/v2`
@@ -19,12 +19,12 @@ const _fetchAPI = async (query = 'pages') => {
 
 const _getPages = async () => {
 	const response = await _fetchAPI()
-	const pages = response.map(({ id, modified, slug, link, title, content }) => ({
-		id,
+	const pages = response.map(({ /* id, */ modified, slug, link, title, content }) => ({
+		// id,
 		isHome: link === WP_HOME,
 		modified,
 		slug,
-		link,
+		// link,
 		title,
 		content,
 	}))
@@ -46,10 +46,17 @@ export const getAllExceptHomePage = async () => {
 	return pages
 }
 
+const _calendarPages = [
+	{ isHome: false, slug: 'ton', title: { rendered: 'Ton' } },
+	{ isHome: false, slug: 'support', title: { rendered: 'Support' } },
+]
+
+export const getCalendarPage = key => _calendarPages.find(item => item.slug === key)
+
 export const buildNavi = async () => {
 	const response = await _getPages()
 	// make sure, 'Home' always comes first
-	const navi = [response.find(item => item.isHome), ...response.filter(item => !item.isHome)]
+	const navi = [response.find(item => item.isHome), ...response.filter(item => !item.isHome), ..._calendarPages]
 
 	return navi
 }

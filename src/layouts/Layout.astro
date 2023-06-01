@@ -5,9 +5,10 @@ import '../styles/global.css'
 export interface Props {
 	slug: string;
 	title?: string;
+	footer?: boolean;
 }
 
-const { slug, title } = Astro.props as Props
+const { slug, title, footer } = Astro.props as Props
 ---
 
 <html lang="de" class={`page-${slug}`}>
@@ -29,7 +30,7 @@ const { slug, title } = Astro.props as Props
 		<slot />
 	</main>
 
-	<footer class="-mt-2 pb-6 flex justify-center">
+	<footer class={footer ? '-mt-2 pb-6 flex justify-center' : 'hidden'}>
 		<a href="https://github.com/cniklas/headless-tmt-astro" rel="noopener">
 			<span class="sr-only">GitHub repo</span>
 			<svg class="fill-current w-6 h-6" viewBox="0 0 16 16">

@@ -17,7 +17,7 @@ const { page, modified } = Astro.props
 const content = processTable(page.content.rendered)
 ---
 
-<Layout slug={page.slug} title={page.title.rendered}>
+<Layout slug={page.slug} title={page.title.rendered} footer>
 	<div class="text-tmtGray-800 dark:text-tmtGray-400 px-4 lg:px-6">
 		<h1
 			class="text-tmtGray-900 dark:text-tmtGray-300 break-words pb-1 pt-3 text-center text-3xl font-bold leading-normal dark:font-semibold md:pb-2 md:text-4xl md:leading-normal lg:break-normal lg:pt-6"

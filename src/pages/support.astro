@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { getCalendarPage } from '../lib/api.js'
+
+const page = getCalendarPage('support')
+---
+
+<Layout slug={page.slug} title={page.title.rendered}>
+	<div class="lg:px-6 lg:pt-10">
+		<iframe
+			src="https://calendar.google.com/calendar/embed?src=tostv%40tos.info&title=Support-Team&showCalendars=0&showTz=0&color=%230F4B38&ctz=Europe%2FBerlin&mode=AGENDA&showDate=0&showPrint=0"
+			class="calendar-full-height block w-full"></iframe>
+	</div>
+</Layout>
