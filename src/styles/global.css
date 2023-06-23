@@ -44,6 +44,10 @@ tbody tr:nth-of-type(odd) {
 	@apply bg-white;
 }
 
+td a {
+	@apply underline text-tmtGray-900 dark:text-tmtGray-300;
+}
+
 /* < 1024 */
 @media (max-width: 63.9375em) {
 	table {
