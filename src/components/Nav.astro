@@ -3,16 +3,14 @@ import { siteName, wpAdmin, buildNavi } from '../lib/api.js'
 
 const navi = await buildNavi()
 
-const staticLinks = [
-	{ url: wpAdmin, text: 'Login' },
-]
+const staticLinks = [{ url: wpAdmin, text: 'Login' }]
 
 const { slug } = Astro.props
 ---
 
 <div class="mx-auto flex flex-wrap items-center justify-between py-3 md:max-w-4xl">
 	<div class="pl-4">
-		<a class="text-xl font-bold text-tmtGray-900 dark:text-tmtGray-400" href="/">
+		<a class="text-tmtGray-900 dark:text-tmtGray-400 text-xl font-bold" href="/">
 			{siteName}
 		</a>
 	</div>
@@ -22,7 +20,7 @@ const { slug } = Astro.props
 			id="js-menu-button"
 			type="button"
 			aria-label="Tweet!"
-			class="flex appearance-none items-center rounded border border-tmtGray-600 hover:border-teal-500 px-3 py-2 text-tmtGray-500 hover:text-tmtGray-900 dark:hover:text-tmtGray-300 focus:outline-none"
+			class="border-tmtGray-600 text-tmtGray-500 hover:text-tmtGray-900 dark:hover:text-tmtGray-300 flex appearance-none items-center rounded border px-3 py-2 hover:border-teal-500 focus:outline-none"
 		>
 			<svg aria-hidden="true" class="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 				<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
@@ -32,15 +30,15 @@ const { slug } = Astro.props
 
 	<div
 		id="js-menu"
-		class="z-20 mt-2 hidden w-full grow bg-white dark:bg-tmtGray-900 md:bg-transparent lg:mt-0 lg:block lg:w-auto"
+		class="dark:bg-tmtGray-900 z-20 mt-2 hidden w-full grow bg-white md:bg-transparent lg:mt-0 lg:block lg:w-auto"
 	>
 		<ul class="items-center justify-end lg:flex">
 			{
 				navi.map(item => (
 					<li class={`lg:mr-3 ${item.isHome ? 'lg:hidden' : ''}`}>
 						<a
-							class={`block lg:inline-block py-2 px-4 text-tmtGray-600 hover:text-tmtGray-900 dark:text-tmtGray-500 dark:hover:text-tmtGray-300 hover:underline ${
-								item.slug === slug ? 'is-active' : ''
+							class={`text-tmtGray-600 hover:text-tmtGray-900 dark:text-tmtGray-500 dark:hover:text-tmtGray-300 block px-4 py-2 lg:inline-block ${
+								item.slug === slug ? 'is-active' : 'hover:underline'
 							}`}
 							href={`/${item.isHome ? '' : item.slug}`}
 						>
@@ -54,7 +52,7 @@ const { slug } = Astro.props
 				staticLinks.map(item => (
 					<li class="lg:mr-3">
 						<a
-							class="block lg:inline-block py-2 px-4 text-tmtGray-600 hover:text-tmtGray-900 dark:text-tmtGray-500 dark:hover:text-tmtGray-300 hover:underline"
+							class="text-tmtGray-600 hover:text-tmtGray-900 dark:text-tmtGray-500 dark:hover:text-tmtGray-300 block px-4 py-2 hover:underline lg:inline-block"
 							href={item.url}
 						>
 							{item.text}
@@ -86,10 +84,6 @@ const { slug } = Astro.props
 
 		@media (prefers-color-scheme: dark) {
 			@apply text-tmtGray-300 font-semibold;
-		}
-
-		&:hover {
-			@apply no-underline;
 		}
 	}
 </style>

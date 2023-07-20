@@ -1,6 +1,6 @@
 {
   "name": "headless-tmt",
-  "version": "3.9.0",
+  "version": "3.10.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/cniklas/headless-tmt-astro.git"
@@ -14,15 +14,13 @@
     "preview": "astro preview"
   },
   "devDependencies": {
+    "@unocss/astro": "^0.53.5",
+    "@unocss/reset": "^0.53.5",
+    "@unocss/transformer-directives": "^0.53.5",
     "astro": "^2.7.2",
-    "astro-windi": "^0.0.2",
-    "node-html-parser": "^6.1.5"
-  },
-  "prettier": {
-    "printWidth": 120,
-    "semi": false,
-    "singleQuote": true,
-    "useTabs": true,
-    "arrowParens": "avoid"
+    "node-html-parser": "^6.1.5",
+    "postcss-nesting": "^12.0.0",
+    "prettier-plugin-tailwindcss": "^0.4.1",
+    "unocss": "^0.53.5"
   }
 }
