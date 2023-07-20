@@ -73,11 +73,11 @@ td a {
 
 	tbody td:first-child[data-th=''] br {
 		content: ' ';
+	}
 
-		&::after {
-			content: ' ';
-			display: inherit;
-		}
+	tbody td:first-child[data-th=''] br::after {
+		content: ' ';
+		display: inherit;
 	}
 }
 
