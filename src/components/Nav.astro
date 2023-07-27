@@ -42,7 +42,7 @@ const { slug } = Astro.props
 							}`}
 							href={`/${item.isHome ? '' : item.slug}`}
 						>
-							{item.isHome ? 'Home' : item.title.rendered}
+							{item.isHome ? 'Home' : item.title}
 						</a>
 					</li>
 				))

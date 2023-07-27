@@ -17,48 +17,51 @@ const _fetchAPI = async (query = 'pages') => {
 	throw new Error(`❗ Failed to fetch API for ${query}\nCode: ${error.code}\nMessage: ${error.message}\n`)
 }
 
+let pages = []
 const _getPages = async () => {
+	if (pages.length) return pages
+
 	const response = await _fetchAPI()
-	const pages = response.map(({ /* id, */ modified, slug, link, title, content }) => ({
-		// id,
-		isHome: link === WP_HOME,
-		modified,
-		slug,
-		// link,
-		title,
-		content,
-	}))
+	pages = response.map(
+		({ title: { rendered: title }, modified, content: { rendered: content }, slug, link, menu_order }) => ({
+			// id,
+			title,
+			content,
+			modified,
+			slug,
+			isHome: link === WP_HOME,
+			// link,
+			menu_order,
+		})
+	)
+	pages.sort((a, b) => (a.isHome ? -1 : b.isHome ? 1 : a.menu_order - b.menu_order))
 
 	return pages
 }
 
 export const getHomePage = async () => {
-	const response = await _getPages()
-	const page = response.find(item => item.isHome)
+	const _pages = await _getPages()
 
-	return page
+	return _pages.find(item => item.isHome)
 }
 
 export const getAllExceptHomePage = async () => {
-	const response = await _getPages()
-	const pages = response.filter(item => !item.isHome)
+	const _pages = await _getPages()
 
-	return pages
+	return _pages.filter(item => !item.isHome)
 }
 
 const _calendarPages = [
-	{ isHome: false, slug: 'ton', title: { rendered: 'Ton' } },
-	{ isHome: false, slug: 'support', title: { rendered: 'Support' } },
+	{ isHome: false, slug: 'ton', title: 'Ton' },
+	{ isHome: false, slug: 'support', title: 'Support' },
 ]
 
 export const getCalendarPage = key => _calendarPages.find(item => item.slug === key)
 
 export const buildNavi = async () => {
-	const response = await _getPages()
-	// make sure, 'Home' always comes first
-	const navi = [response.find(item => item.isHome), ...response.filter(item => !item.isHome), ..._calendarPages]
+	const _pages = await _getPages()
 
-	return navi
+	return [..._pages, ..._calendarPages]
 }
 
 export const processTable = content => {
