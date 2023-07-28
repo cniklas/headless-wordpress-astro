@@ -1,7 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { getAllExceptHomePage, processTable } from '../lib/api.js'
-import { formatDate } from '../lib/dateTime.js'
+import { getAllExceptHomePage, processTable, type Page } from '../lib/api'
+import { formatDate } from '../lib/dateTime'
+export interface Props {
+	page: Page
+	modified: string
+}
 
 export async function getStaticPaths() {
 	const pages = await getAllExceptHomePage()

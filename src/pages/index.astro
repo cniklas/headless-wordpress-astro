@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { getHomePage, processTable } from '../lib/api.js'
-import { formatDate } from '../lib/dateTime.js'
+import { getHomePage, processTable } from '../lib/api'
+import { formatDate } from '../lib/dateTime'
 
 const page = await getHomePage()
 const modified = formatDate(page.modified)

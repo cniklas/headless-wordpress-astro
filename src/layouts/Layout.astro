@@ -1,6 +1,6 @@
 ---
 import Nav from '../components/Nav.astro'
-import { siteName } from '../lib/api.js'
+import { siteName } from '../lib/api'
 import '../styles/global.css'
 export interface Props {
 	slug: string
@@ -8,7 +8,7 @@ export interface Props {
 	footer?: boolean
 }
 
-const { slug, title, footer } = Astro.props as Props
+const { slug, title, footer } = Astro.props
 ---
 
 <!DOCTYPE html>

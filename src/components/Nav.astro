@@ -1,7 +1,10 @@
 ---
-import { siteName, wpAdmin, buildNavi } from '../lib/api.js'
+import { siteName, wpAdmin, buildNavi, type Page, type CalendarPage } from '../lib/api'
+export interface Props {
+	slug: string
+}
 
-const navi = await buildNavi()
+const navi: Page[] | CalendarPage[] = await buildNavi()
 
 const staticLinks = [{ url: wpAdmin, text: 'Login' }]
 

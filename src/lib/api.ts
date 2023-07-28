@@ -1,36 +1,39 @@
 import { parse } from 'node-html-parser'
-const WP_URL = import.meta.env.WP_URL
+const WP_URL: string = import.meta.env.WP_URL
 const WP_HOME = `${WP_URL}/`
 const REST_URL = `${WP_URL}/wp-json/wp/v2`
 
-export const siteName = import.meta.env.WP_TITLE
+export const siteName: string = import.meta.env.WP_TITLE
 export const wpAdmin = `${WP_URL}/admin`
 
 const _fetchAPI = async (query = 'pages') => {
 	const response = await fetch(`${REST_URL}/${query}`)
-
-	if (response.ok) {
-		return response.json()
-	}
+	if (response.ok) return response.json()
 
 	const error = await response.json()
 	throw new Error(`❗ Failed to fetch API for ${query}\nCode: ${error.code}\nMessage: ${error.message}\n`)
 }
 
-let pages = []
+export type Page = {
+	title: string
+	content: string
+	modified: string
+	slug: string
+	isHome: boolean
+	menu_order: number
+}
+let pages: Page[] = []
 const _getPages = async () => {
 	if (pages.length) return pages
 
 	const response = await _fetchAPI()
 	pages = response.map(
-		({ title: { rendered: title }, modified, content: { rendered: content }, slug, link, menu_order }) => ({
-			// id,
+		({ title: { rendered: title }, modified, content: { rendered: content }, slug, link, menu_order }): Page => ({
 			title,
 			content,
 			modified,
 			slug,
 			isHome: link === WP_HOME,
-			// link,
 			menu_order,
 		})
 	)
@@ -51,20 +54,25 @@ export const getAllExceptHomePage = async () => {
 	return _pages.filter(item => !item.isHome)
 }
 
-const _calendarPages = [
-	{ isHome: false, slug: 'ton', title: 'Ton' },
-	{ isHome: false, slug: 'support', title: 'Support' },
+export type CalendarPage = {
+	title: string
+	slug: string
+	isHome: boolean
+}
+const _calendarPages: CalendarPage[] = [
+	{ title: 'Ton', slug: 'ton', isHome: false },
+	{ title: 'Support', slug: 'support', isHome: false },
 ]
 
-export const getCalendarPage = key => _calendarPages.find(item => item.slug === key)
+export const getCalendarPage = (key: string) => _calendarPages.find(item => item.slug === key)
 
-export const buildNavi = async () => {
+export const buildNavi: () => Promise<Page[] | CalendarPage[]> = async () => {
 	const _pages = await _getPages()
 
 	return [..._pages, ..._calendarPages]
 }
 
-export const processTable = content => {
+export const processTable = (content: string) => {
 	// https://github.com/taoqf/node-html-parser
 	const dom = parse(content)
 	const table = dom.querySelector('table')
