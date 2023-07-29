@@ -80,21 +80,24 @@ export const processTable = (content: string) => {
 
 	const headers = []
 	const thead = table.querySelector('thead')
-	const tbody = table.querySelector('tbody')
-	let cellList
 
 	if (thead) {
-		cellList = thead.querySelectorAll('th')
-		for (const cell of cellList) {
-			headers.push(cell.textContent.trim() || '')
-		}
+		const cellList = thead.querySelectorAll('th')
+		cellList.forEach(cell => {
+			const content = cell.textContent.trim()
+			headers.push(content)
+			// a11y: table headers should not comtain empty `<th>` elements
+			if (!content.length) cell.replaceWith('<td></td>')
+		})
 
-		table.insertAdjacentHTML('beforeend', `<tfoot>${thead.innerHTML}</tfoot>`)
+		thead.insertAdjacentHTML('afterend', `<tfoot>${thead.innerHTML}</tfoot>`)
 	}
+
+	const tbody = table.querySelector('tbody')
 	const headersLength = headers.length
 
 	if (tbody && headersLength) {
-		cellList = tbody.querySelectorAll('td')
+		const cellList = tbody.querySelectorAll('td')
 		// for (const cell of cellList) {
 		// 	cell.dataset.th = headers[cell.cellIndex]
 		// }

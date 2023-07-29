@@ -1,3 +1,8 @@
+:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
 .wp-block-table {
 	@apply -mx-4 lg:mx-0 lg:overflow-x-auto;
 
@@ -11,7 +16,7 @@ table {
 	@apply w-full table-auto;
 }
 
-@screen lg {
+@media (min-width: 64em) {
 	.wp-block-table > table {
 		width: calc(100% - 1px);
 	}
@@ -27,7 +32,7 @@ tfoot th {
 	@apply text-center align-bottom font-semibold;
 }
 
-td {
+tbody td {
 	@apply border-tmtGray-300 border align-top;
 }
 
@@ -60,7 +65,9 @@ td a {
 	}
 
 	thead th,
+	thead td,
 	tfoot th,
+	tfoot td,
 	tbody td:empty,
 	tbody td[data-th='']::before {
 		@apply hidden;
@@ -84,10 +91,8 @@ td a {
 .calendar-full-height {
 	height: calc(100vh - 5rem);
 	height: calc(100dvh - 5rem);
-}
 
-@screen lg {
-	.calendar-full-height {
+	@media (min-width: 64em) {
 		height: calc(100vh - 7.5rem);
 		height: calc(100dvh - 7.5rem);
 	}
