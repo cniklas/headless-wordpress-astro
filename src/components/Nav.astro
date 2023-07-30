@@ -39,7 +39,7 @@ const { slug } = Astro.props
 	>
 		<ul class="items-center justify-end lg:flex">
 			{
-				navi.map(item => (
+				navi.map((item: Page | CalendarPage) => (
 					<li class={`lg:mr-3 ${item.isHome ? 'lg:hidden' : ''}`}>
 						<a
 							class={`text-tmtGray-650 hover:text-tmtGray-900 dark:text-tmtGray-500 dark:hover:text-tmtGray-300 block px-4 py-2 lg:inline-block ${
@@ -47,7 +47,7 @@ const { slug } = Astro.props
 							}`}
 							href={`/${item.isHome ? '' : item.slug}`}
 						>
-							{item.isHome ? 'Home' : item.title}
+							{item.title}
 						</a>
 					</li>
 				))
