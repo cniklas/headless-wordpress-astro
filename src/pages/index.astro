@@ -19,16 +19,16 @@ const content = processTable(page.content)
 			aktualisiert am {modified}
 		</p>
 
-		<section id="content" class="pb-6 pt-9 lg:pt-10" set:html={content} />
+		<div id="content" class="pb-6 pt-9 lg:pt-10" set:html={content} />
 
-		<footer class="flex justify-center py-6">
+		<div class="flex justify-center py-6">
 			<img
 				src="https://api.netlify.com/api/v1/badges/13a06c8c-d55d-455c-ba19-e24dcc607c53/deploy-status"
 				class="text-center text-sm"
 				width="118"
 				height="20"
-				alt="Netlify Status"
+				alt=""
 			/>
-		</footer>
+		</div>
 	</div>
 </Layout>
