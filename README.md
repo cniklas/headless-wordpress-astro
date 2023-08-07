@@ -1,4 +1,4 @@
-# Headless TMT
+# Headless WordPress Using Astro
 
 Tutorial: [Convert WordPress to static using Astro](https://wpowls.co/articles/convert-wordpress-to-static-using-astro/)
 
