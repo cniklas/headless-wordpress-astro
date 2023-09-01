@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@unocss/astro": "^0.54.1",
-    "@unocss/reset": "^0.54.1",
+    "@unocss/reset": "^0.55.4",
     "@unocss/transformer-directives": "^0.54.1",
     "astro": "^2.9.6",
     "node-html-parser": "^6.1.5",
