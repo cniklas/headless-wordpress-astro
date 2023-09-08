@@ -3,6 +3,10 @@
 	outline-offset: 2px;
 }
 
+html {
+	scrollbar-gutter: stable;
+}
+
 .wp-block-table {
 	@apply -mx-4 lg:mx-0 lg:overflow-x-auto;
 
