@@ -70,18 +70,25 @@ const { slug } = Astro.props
 </div>
 
 <script>
-	let clicked = false
-	const menu = document.querySelector('#js-menu')
-	const button = document.querySelector('#js-menu-button')
-	button.addEventListener('click', function () {
-		if (clicked) return
-		clicked = true
-		menu.classList.toggle('hidden')
-		button.setAttribute('aria-expanded', `${button.getAttribute('aria-expanded') === 'false'}`)
-		requestAnimationFrame(function () {
-			clicked = false
+	// https://docs.astro.build/en/guides/view-transitions/#astroafter-swap
+	const setupMobileNav = () => {
+		let clicked = false
+		const menu = document.querySelector('#js-menu')
+		const button = document.querySelector('#js-menu-button')
+		button.addEventListener('click', function () {
+			if (clicked) return
+			clicked = true
+			menu.classList.toggle('hidden')
+			button.setAttribute('aria-expanded', `${button.getAttribute('aria-expanded') === 'false'}`)
+			requestAnimationFrame(function () {
+				clicked = false
+			})
 		})
-	})
+	}
+	// runs on initial navigation
+	setupMobileNav()
+	// runs on view transitions navigation
+  document.addEventListener('astro:after-swap', setupMobileNav);
 </script>
 
 <style lang="postcss">
