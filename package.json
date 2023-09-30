@@ -1,6 +1,6 @@
 {
   "name": "headless-tmt",
-  "version": "3.14.1",
+  "version": "3.15.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/cniklas/headless-tmt-astro.git"

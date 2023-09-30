@@ -70,7 +70,6 @@ const { slug } = Astro.props
 </div>
 
 <script>
-	// https://docs.astro.build/en/guides/view-transitions/#astroafter-swap
 	const setupMobileNav = () => {
 		let clicked = false
 		const menu = document.querySelector('#js-menu')
@@ -85,10 +84,11 @@ const { slug } = Astro.props
 			})
 		})
 	}
+	// https://docs.astro.build/en/guides/view-transitions/#astroafter-swap
 	// runs on initial navigation
 	setupMobileNav()
-	// runs on view transitions navigation
-  document.addEventListener('astro:after-swap', setupMobileNav);
+	// // runs on view transitions navigation
+  // document.addEventListener('astro:after-swap', setupMobileNav);
 </script>
 
 <style lang="postcss">

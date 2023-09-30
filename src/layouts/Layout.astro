@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions'
+// import { ViewTransitions } from 'astro:transitions'
 import Nav from '../components/Nav.astro'
 import { siteName } from '../lib/api'
 import '../styles/global.css'
@@ -22,7 +22,7 @@ const { slug, title, footer } = Astro.props
 	<meta name="robots" content="noindex, nofollow">
 	<link rel="icon" type="image/x-icon" href="/favicon.ico">
 	<title>{title ? `${title} - ${siteName}` : siteName}</title>
-	<ViewTransitions />
+	<!-- <ViewTransitions /> -->
 </head>
 
 <!-- prettier-ignore -->
