@@ -2,3 +2,8 @@
 	for = "/*.(css|js|woff2)"
 	[headers.values]
 	Cache-Control = "public, max-age=31536000, immutable" # 12 months
+
+[[headers]]
+	for = "/*"
+	[headers.values]
+	Permissions-Policy = "interest-cohort=()"
