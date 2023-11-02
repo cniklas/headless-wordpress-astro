@@ -117,7 +117,7 @@ td a {
 		@apply font-semibold;
 	}
 
-	td {
+	tbody td {
 		@apply border-tmtGray-700;
 	}
 
