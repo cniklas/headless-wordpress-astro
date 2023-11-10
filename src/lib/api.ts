@@ -88,9 +88,10 @@ export const processTable = (content: string) => {
 			headers.push(content)
 			// a11y: table headers should not comtain empty `<th>` elements
 			if (!content.length) cell.replaceWith('<td></td>')
+			else cell.setAttribute('scope', 'col')
 		})
 
-		thead.insertAdjacentHTML('afterend', `<tfoot>${thead.innerHTML}</tfoot>`)
+		thead.insertAdjacentHTML('afterend', `<tfoot aria-hidden="true">${thead.innerHTML}</tfoot>`)
 	}
 
 	const tbody = table.querySelector('tbody')
@@ -103,6 +104,10 @@ export const processTable = (content: string) => {
 		// }
 		cellList.forEach((cell, i) => {
 			const j = i % headersLength
+			if (j === 0 && !headers[j].length) {
+				cell.replaceWith(`<th scope="row">${cell.textContent}</th>`)
+				return
+			}
 			cell.setAttribute('data-th', headers[j])
 		})
 	}
