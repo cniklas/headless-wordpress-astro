@@ -9,9 +9,11 @@ html {
 
 .wp-block-table {
 	@apply -mx-4 lg:mx-0 lg:overflow-x-auto;
+}
 
-	/* >= 1440 */
-	@media (min-width: 90em) {
+/* >= 1440 */
+@media (min-width: 90em) {
+	.wp-block-table {
 		@apply -mx-20;
 	}
 }
@@ -38,7 +40,7 @@ tfoot th {
 
 tbody th,
 tbody td {
-	@apply border-tmtGray-300 border align-top;
+	@apply border-tmtGray-300 border align-top dark:border-tmtGray-700;
 }
 
 tbody th {
@@ -46,7 +48,7 @@ tbody th {
 }
 
 tbody tr:nth-of-type(odd) {
-	@apply bg-white;
+	@apply bg-white dark:bg-tmtGray-900;
 }
 
 td a {
@@ -76,33 +78,32 @@ td a {
 
 	thead,
 	tfoot,
-	tbody td:empty,
-	tbody td[data-th='']::before {
+	tbody td:empty {
 		@apply hidden;
 	}
 
-	/* tbody td:first-child[data-th=''] */
 	tbody th {
 		@apply text-tmtGray-900 block font-semibold uppercase;
 		letter-spacing: 0.125rem;
 	}
 
-	/* tbody td:first-child[data-th=''] br */
 	tbody th br {
 		content: ' ';
+	}
 
-		&::after {
-			content: ' ';
-			display: inherit;
-		}
+	tbody th br::after {
+		content: ' ';
+		display: inherit;
 	}
 }
 
 .calendar-full-height {
 	height: calc(100vh - 5rem);
 	height: calc(100dvh - 5rem);
+}
 
-	@media (min-width: 64em) {
+@media (min-width: 64em) {
+	.calendar-full-height {
 		height: calc(100vh - 7.5rem);
 		height: calc(100dvh - 7.5rem);
 	}
@@ -116,23 +117,6 @@ td a {
 	@apply mb-6;
 }
 
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-	thead th,
-	tfoot th {
-		@apply font-semibold;
-	}
-
-	tbody th,
-	tbody td {
-		@apply border-tmtGray-700;
-	}
-
-	tbody tr:nth-of-type(odd) {
-		@apply bg-tmtGray-900;
-	}
-}
-
 /* Dark Mode < 1024 */
 @media (prefers-color-scheme: dark) and (max-width: 63.9375em) {
 	tbody tr {
@@ -143,23 +127,7 @@ td a {
 		@apply font-normal;
 	}
 
-	/* tbody td:first-child[data-th=''] */
 	tbody th {
 		@apply text-tmtGray-300 font-medium;
-	}
-}
-
-.check-list {
-	@apply mx-auto mb-6 max-w-2xl;
-
-	> li {
-		display: flex;
-		align-items: baseline;
-
-		> [type='checkbox'] {
-			@apply mr-4 mt-1.5 h-6 w-6 cursor-pointer;
-			flex-shrink: 0;
-			transform: translateY(0.375rem);
-		}
 	}
 }
