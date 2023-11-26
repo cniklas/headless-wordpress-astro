@@ -19,7 +19,8 @@ html {
 }
 
 table {
-	@apply w-full table-auto;
+	table-layout: auto;
+	width: 100%;
 }
 
 @media (min-width: 64em) {
@@ -35,7 +36,9 @@ td {
 
 thead th,
 tfoot th {
-	@apply text-center align-bottom font-semibold;
+	font-weight: 600;
+	text-align: center;
+	vertical-align: bottom;
 }
 
 tbody th,
@@ -44,7 +47,8 @@ tbody td {
 }
 
 tbody th {
-	@apply text-left font-medium;
+	font-weight: 500;
+	text-align: left;
 }
 
 tbody tr:nth-of-type(odd) {
@@ -58,7 +62,7 @@ td a {
 /* < 1024 */
 @media (max-width: 63.9375em) {
 	table {
-		@apply overflow-hidden;
+		overflow: hidden;
 	}
 
 	tbody tr {
@@ -79,7 +83,7 @@ td a {
 	thead,
 	tfoot,
 	tbody td:empty {
-		@apply hidden;
+		display: none;
 	}
 
 	tbody th {
@@ -124,7 +128,7 @@ td a {
 	}
 
 	tbody td[data-th]::before {
-		@apply font-normal;
+		font-weight: 400;
 	}
 
 	tbody th {

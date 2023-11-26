@@ -47,12 +47,16 @@ const { slug } = Astro.props
 		<ul class="items-center justify-end lg:flex">
 			{
 				navi.map((item: Page | CalendarPage) => (
-					<li class={`lg:mr-3 ${item.isHome ? 'lg:hidden' : ''}`}>
+					<li class:list={['lg:mr-3', { 'lg:hidden': item.isHome }]}>
 						<a
-							class={`text-tmtGray-650 hover:text-tmtGray-900 dark:text-tmtGray-500 dark:hover:text-tmtGray-300 block px-4 py-2 lg:inline-block ${
-								item.slug === slug ? 'is-active' : 'hover:underline'
-							}`}
+							class:list={[
+								'text-tmtGray-650 hover:text-tmtGray-900 dark:text-tmtGray-500 dark:hover:text-tmtGray-300 block px-4 py-2 lg:inline-block',
+								{
+									'hover:underline': item.slug !== slug,
+								},
+							]}
 							href={`/${item.isHome ? '' : item.slug}`}
+							aria-current={item.slug === slug ? 'page' : null}
 						>
 							{item.title}
 						</a>
@@ -99,7 +103,7 @@ const { slug } = Astro.props
 </script>
 
 <style lang="postcss">
-	.is-active {
+	[aria-current="page"] {
 		@apply text-tmtGray-900 font-bold dark:text-tmtGray-300 dark:font-semibold;
 	}
 </style>
