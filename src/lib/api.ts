@@ -1,13 +1,13 @@
 import { parse } from 'node-html-parser'
 const WP_URL: string = import.meta.env.WP_URL
-const WP_HOME = `${WP_URL}/`
-const REST_URL = `${WP_URL}/wp-json/wp/v2`
+const WP_HOME_URL = `${WP_URL}/`
+const WP_REST_URL = `${WP_URL}/wp-json/wp/v2`
+const WP_ADMIN_URL = `${WP_URL}/admin`
 
 export const siteName: string = import.meta.env.WP_TITLE
-export const wpAdmin = `${WP_URL}/admin`
 
-const _fetchAPI = async (query = 'pages') => {
-	const response = await fetch(`${REST_URL}/${query}`)
+const _fetchFromWordPress = async (query = 'pages') => {
+	const response = await fetch(`${WP_REST_URL}/${query}`)
 	if (response.ok) return response.json()
 
 	const error = await response.json()
@@ -22,20 +22,22 @@ export type Page = {
 	isHome: boolean
 	menu_order: number
 }
-let pages: Page[] = []
+const pages: Page[] = []
 const _getPages = async () => {
 	if (pages.length) return pages
 
-	const response = await _fetchAPI()
-	pages = response.map(
-		({ title: { rendered: title }, modified, content: { rendered: content }, slug, link, menu_order }): Page => ({
-			title,
-			content,
-			modified,
-			slug,
-			isHome: link === WP_HOME,
-			menu_order,
-		})
+	const response = await _fetchFromWordPress()
+	response.forEach(
+		({ title: { rendered: title }, modified, content: { rendered: content }, slug, link, menu_order }) => {
+			pages.push({
+				title,
+				content,
+				modified,
+				slug,
+				isHome: link === WP_HOME_URL,
+				menu_order,
+			})
+		},
 	)
 	pages.sort((a, b) => (a.isHome ? -1 : b.isHome ? 1 : a.menu_order - b.menu_order))
 
@@ -71,6 +73,8 @@ export const buildNavi: () => Promise<Page[] | CalendarPage[]> = async () => {
 
 	return [..._pages, ..._calendarPages]
 }
+
+export const staticLinks = [{ title: 'Login', url: WP_ADMIN_URL }]
 
 export const processTable = (content: string) => {
 	// https://github.com/taoqf/node-html-parser

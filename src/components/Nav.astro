@@ -1,12 +1,10 @@
 ---
-import { siteName, wpAdmin, buildNavi, type Page, type CalendarPage } from '../lib/api'
+import { siteName, buildNavi, staticLinks, type Page, type CalendarPage } from '../lib/api'
 export interface Props {
 	slug: string
 }
 
-const navi: Page[] | CalendarPage[] = await buildNavi()
-
-const staticLinks = [{ url: wpAdmin, text: 'Login' }]
+const navi = await buildNavi()
 
 const { slug } = Astro.props
 ---
@@ -71,7 +69,7 @@ const { slug } = Astro.props
 							class="text-tmtGray-650 hover:text-tmtGray-900 dark:text-tmtGray-500 dark:hover:text-tmtGray-300 block px-4 py-2 hover:underline lg:inline-block"
 							href={item.url}
 						>
-							{item.text}
+							{item.title}
 						</a>
 					</li>
 				))
