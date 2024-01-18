@@ -71,13 +71,16 @@ td a {
 
 	tbody th,
 	tbody td {
-		@apply flex border-0 py-0.5;
+		@apply border-0 py-0.5;
+	}
+
+	tbody td {
+		@apply grid grid-cols-[min(calc(38.2%-0.625rem),9.375rem)_1fr] gap-x-2.5;
 	}
 
 	tbody td[data-th]::before {
 		content: attr(data-th) ': ';
-		@apply shrink-0 overflow-hidden text-ellipsis pr-2.5 font-semibold;
-		width: min(38.2%, 10rem);
+		@apply overflow-hidden text-ellipsis font-semibold;
 	}
 
 	thead,
