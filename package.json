@@ -20,6 +20,6 @@
     "astro": "^4.3.0",
     "node-html-parser": "^6.1.12",
     "prettier-plugin-tailwindcss": "^0.5.10",
-    "unocss": "^0.58.2"
+    "unocss": "^0.58.4"
   }
 }
