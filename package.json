@@ -14,7 +14,7 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@unocss/astro": "^0.57.1",
+    "@unocss/astro": "^0.58.4",
     "@unocss/reset": "^0.57.1",
     "@unocss/transformer-directives": "^0.58.2",
     "astro": "^4.3.0",
