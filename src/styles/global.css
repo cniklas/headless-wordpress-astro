@@ -43,7 +43,7 @@ tfoot th {
 
 tbody th,
 tbody td {
-	@apply border-tmtGray-300 border align-top dark:border-tmtGray-700;
+	@apply border-tmtGray-300 dark:border-tmtGray-700 border align-top;
 }
 
 tbody th {
@@ -52,7 +52,7 @@ tbody th {
 }
 
 tbody tr:nth-of-type(odd) {
-	@apply bg-white dark:bg-tmtGray-900;
+	@apply dark:bg-tmtGray-900 bg-white;
 }
 
 td a {

@@ -1,6 +1,6 @@
 {
   "name": "headless-tmt",
-  "version": "3.20.0",
+  "version": "3.21.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/cniklas/headless-tmt-astro.git"
@@ -11,7 +11,8 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "format": "prettier --write src/"
   },
   "devDependencies": {
     "@unocss/astro": "^0.58.4",
@@ -19,6 +20,7 @@
     "@unocss/transformer-directives": "^0.58.2",
     "astro": "^4.3.0",
     "node-html-parser": "^6.1.12",
+    "prettier-plugin-astro": "^0.13.0",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "unocss": "^0.58.4"
   }
