@@ -62,7 +62,7 @@ td a {
 /* < 1024 */
 @media (max-width: 63.9375em) {
 	table {
-		overflow: hidden;
+		overflow: clip;
 	}
 
 	tbody tr {
@@ -80,7 +80,7 @@ td a {
 
 	tbody td[data-th]::before {
 		content: attr(data-th) ': ';
-		@apply overflow-hidden text-ellipsis font-semibold;
+		@apply overflow-clip text-ellipsis font-semibold;
 	}
 
 	thead,
