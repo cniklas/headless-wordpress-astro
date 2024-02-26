@@ -1,7 +1,7 @@
 ---
 import Nav from '../components/Nav.astro'
 import { siteName } from '../lib/api'
-import '../styles/global.css'
+import '../styles/main.css'
 export interface Props {
 	slug: string
 	title?: string
@@ -28,7 +28,7 @@ const { slug, title, footer } = Astro.props
 			<Nav slug={slug} />
 		</header>
 
-		<main class="container mx-auto w-full max-w-7xl pt-20 lg:pt-4">
+		<main class="mx-auto w-full max-w-7xl pt-20 lg:pt-4">
 			<slot />
 		</main>
 
