@@ -7,12 +7,6 @@ html {
 	scrollbar-gutter: stable;
 }
 
-ol,
-ul,
-menu {
-	list-style-type: '';
-}
-
 .wp-block-table {
 	@apply -mx-4 lg:mx-0 lg:overflow-x-auto;
 }
