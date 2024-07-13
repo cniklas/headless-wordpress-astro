@@ -7,3 +7,6 @@
 	for = "/*"
 	[headers.values]
 	Permissions-Policy = "interest-cohort=()"
+	Referrer-Policy = "strict-origin-when-cross-origin"
+	X-Content-Type-Options = "nosniff"
+	X-Frame-Options = "DENY"
