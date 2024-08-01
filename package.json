@@ -18,7 +18,7 @@
     "@unocss/astro": "^0.61.0",
     "@unocss/reset": "^0.61.0",
     "@unocss/transformer-directives": "^0.61.0",
-    "astro": "^4.11.3",
+    "astro": "^4.13.0",
     "node-html-parser": "^6.1.13",
     "prettier-plugin-astro": "^0.14.0",
     "prettier-plugin-tailwindcss": "^0.6.5",
