@@ -1,9 +1,9 @@
 {
-  "name": "headless-tmt",
-  "version": "3.22.0",
+  "name": "headless-wordpress-astro",
+  "version": "3.23.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cniklas/headless-tmt-astro.git"
+    "url": "https://github.com/cniklas/headless-wordpress-astro.git"
   },
   "author": "Christian Niklas",
   "license": "MIT",
