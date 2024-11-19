@@ -81,8 +81,8 @@ const { slug } = Astro.props
 <script>
 	const setupMobileNav = () => {
 		let clicked = false
-		const menu = document.querySelector('#js-menu')
-		const button = document.querySelector('#js-menu-button')
+		const menu = document.querySelector<HTMLElement>('#js-menu')
+		const button = document.querySelector<HTMLButtonElement>('#js-menu-button')
 		button.addEventListener('click', function () {
 			if (clicked) return
 			clicked = true
