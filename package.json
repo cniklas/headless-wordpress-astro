@@ -22,6 +22,6 @@
     "node-html-parser": "^6.1.13",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.8",
-    "unocss": "^0.63.6"
+    "unocss": "^0.64.1"
   }
 }
