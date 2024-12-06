@@ -9,15 +9,13 @@ const content = processTable(page.content)
 ---
 
 <Layout slug={page.slug} footer>
-	<div class="text-tmtGray-800 dark:text-tmtGray-400 px-4 lg:px-6">
-		<h1
-			class="text-tmtGray-900 dark:text-tmtGray-300 break-words pb-1 pt-3 text-center text-3xl/normal font-bold md:pb-2 md:text-4xl/normal lg:break-normal lg:pt-6 dark:font-semibold"
-		>
+	<div class="content-wrapper">
+		<h1 class="content-title">
 			{page.title}
 		</h1>
-		<p class="text-tmtGray-650 dark:text-tmtGray-600 text-center text-sm/normal md:text-base">
+		<div class="content-update">
 			aktualisiert am {modified}
-		</p>
+		</div>
 
 		<div id="content" class="pb-6 pt-9 lg:pt-10" set:html={content} />
 

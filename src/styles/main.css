@@ -1,3 +1,17 @@
+:root {
+	color-scheme: light dark;
+	--white: oklch(100% 0 0);
+	--tmtGray-100: oklch(98.34% 0.0042 236.5);
+	--tmtGray-300: oklch(92.88% 0.0126 255.51);
+	--tmtGray-400: oklch(86.87% 0.0187 250.61);
+	--tmtGray-500: oklch(74.57% 0.0304 254.72);
+	--tmtGray-600: oklch(59.56% 0.0381 257.87);
+	--tmtGray-650: oklch(52.17% 0.0383 260.92);
+	--tmtGray-700: oklch(44.74% 0.0343 261.32);
+	--tmtGray-800: oklch(33.51% 0.0331 260.91);
+	--tmtGray-900: oklch(24.33% 0.0247 263.95);
+}
+
 :focus-visible {
 	outline: 2px solid currentColor;
 	outline-offset: 2px;
@@ -5,6 +19,25 @@
 
 html {
 	scrollbar-gutter: stable;
+}
+
+body {
+	background-color: light-dark(var(--tmtGray-100), oklch(17.25% 0.0165 284.53));
+}
+
+.content-wrapper {
+	@apply px-4 lg:px-6;
+	color: light-dark(var(--tmtGray-800), var(--tmtGray-400));
+}
+
+.content-title {
+	@apply break-words pb-1 pt-3 text-center text-3xl/normal font-bold md:pb-2 md:text-4xl/normal lg:break-normal lg:pt-6 dark:font-semibold;
+	color: light-dark(var(--tmtGray-900), var(--tmtGray-300));
+}
+
+.content-update {
+	@apply text-center text-sm/normal md:text-base;
+	color: light-dark(var(--tmtGray-650), var(--tmtGray-600));
 }
 
 .wp-block-table {
@@ -43,7 +76,9 @@ tfoot th {
 
 tbody th,
 tbody td {
-	@apply border-tmtGray-300 dark:border-tmtGray-700 border align-top;
+	border-width: 1px;
+	border-color: light-dark(var(--tmtGray-300), var(--tmtGray-700));
+	vertical-align: top;
 }
 
 tbody th {
@@ -52,11 +87,12 @@ tbody th {
 }
 
 tbody tr:nth-of-type(odd) {
-	@apply dark:bg-tmtGray-900 bg-white;
+	background-color: light-dark(var(--white), var(--tmtGray-900));
 }
 
 td a {
-	@apply text-tmtGray-900 dark:text-tmtGray-300 underline;
+	color: light-dark(var(--tmtGray-900), var(--tmtGray-300));
+	text-decoration-line: underline;
 }
 
 /* < 1024 */
@@ -66,7 +102,8 @@ td a {
 	}
 
 	tbody tr {
-		@apply border-tmtGray-300 block border-t py-2.5 last:border-b;
+		@apply block border-t py-2.5 last:border-b;
+		border-color: var(--tmtGray-300);
 	}
 
 	tbody th,
@@ -90,7 +127,10 @@ td a {
 	}
 
 	tbody th {
-		@apply text-tmtGray-900 block font-semibold uppercase;
+		color: var(--tmtGray-900);
+		display: block;
+		font-weight: 600;
+		text-transform: uppercase;
 		letter-spacing: 0.125rem;
 	}
 
@@ -117,7 +157,14 @@ td a {
 }
 
 .wp-block-file a {
-	@apply rounded border-b-4 border-blue-700 bg-blue-500 px-4 py-2 text-lg text-white hover:border-blue-500 hover:bg-blue-400 lg:text-xl;
+	@apply rounded border-b-4 border-blue-700 bg-blue-500 px-4 py-2 text-lg lg:text-xl;
+	color: var(--white);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.wp-block-file a:hover {
+		@apply border-blue-500 bg-blue-400;
+	}
 }
 
 #content > p:not(:empty) {
@@ -127,7 +174,7 @@ td a {
 /* Dark Mode < 1024 */
 @media (prefers-color-scheme: dark) and (max-width: 63.9375em) {
 	tbody tr {
-		@apply border-tmtGray-700;
+		border-color: var(--tmtGray-700);
 	}
 
 	tbody td[data-th]::before {
@@ -135,6 +182,7 @@ td a {
 	}
 
 	tbody th {
-		@apply text-tmtGray-300 font-medium;
+		color: var(--tmtGray-300);
+		font-weight: 500;
 	}
 }
