@@ -49,11 +49,17 @@ const { slug, title, footer } = Astro.props
 <style is:global>
 	.header {
 		@apply fixed top-0 z-10 w-full lg:static;
-		background-color: light-dark(var(--white), var(--tmtGray-900));
+		background-color: white;
 		/* = `shadow` */
 		box-shadow:
 			0 1px 3px rgba(0, 0, 0, 0.1),
 			0 1px 2px -1px rgba(0, 0, 0, 0.1);
+	}
+
+	@supports (background-color: light-dark(white, black)) {
+		.header {
+			background-color: light-dark(var(--white), var(--tmtGray-900));
+		}
 	}
 
 	@media (prefers-color-scheme: dark) {
