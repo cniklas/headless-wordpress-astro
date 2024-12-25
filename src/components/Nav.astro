@@ -9,40 +9,36 @@ const navi = await buildNavi()
 const { slug } = Astro.props
 ---
 
-<div class="mx-auto flex flex-wrap items-center justify-between py-3 md:max-w-4xl">
-	<div class="pl-4">
-		<a class="site-name" href="/">
-			{siteName}
-		</a>
-	</div>
+<div class="mx-auto flex flex-wrap items-center py-3 md:max-w-4xl">
+	<a class="site-name" href="/">
+		{siteName}
+	</a>
 
-	<div class="pr-4 lg:hidden">
-		<button
-			type="button"
-			class="menu-button"
-			id="js-menu-button"
-			aria-expanded="false"
-			aria-controls="js-menu"
-			aria-label="Navigation öffnen / schließen"
+	<button
+		type="button"
+		class="menu-button"
+		id="js-menu-button"
+		aria-expanded="false"
+		aria-controls="js-menu"
+		aria-label="Navigation öffnen / schließen"
+	>
+		<svg
+			aria-hidden="true"
+			class="size-3 fill-current"
+			viewBox="0 0 20 20"
+			width="12"
+			height="12"
+			xmlns="http://www.w3.org/2000/svg"
 		>
-			<svg
-				aria-hidden="true"
-				class="size-3 fill-current"
-				viewBox="0 0 20 20"
-				width="12"
-				height="12"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-			</svg>
-		</button>
-	</div>
+			<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+		</svg>
+	</button>
 
-	<nav id="js-menu" class="menu hidden">
-		<ul class="items-center justify-end lg:flex">
+	<nav id="js-menu" class="menu">
+		<ul class="items-center justify-end gap-x-3 lg:flex">
 			{
 				navi.map((item: Page | CalendarPage) => (
-					<li class="lg:mr-3" class:list={[{ 'lg:hidden': item.isHome }]}>
+					<li class:list={[{ 'lg:hidden': item.isHome }]}>
 						<a
 							class="menu-item"
 							href={`/${item.isHome ? '' : item.slug}`}
@@ -56,7 +52,7 @@ const { slug } = Astro.props
 
 			{
 				staticLinks.map(item => (
-					<li class="lg:mr-3">
+					<li>
 						<a class="menu-item" href={item.url}>
 							{item.title}
 						</a>
@@ -70,12 +66,10 @@ const { slug } = Astro.props
 <script>
 	const setupMobileNav = () => {
 		let clicked = false
-		const menu = document.querySelector<HTMLElement>('#js-menu')
 		const button = document.querySelector<HTMLButtonElement>('#js-menu-button')
-		button.addEventListener('click', function () {
+		button?.addEventListener('click', function () {
 			if (clicked) return
 			clicked = true
-			menu.classList.toggle('hidden')
 			button.setAttribute('aria-expanded', `${button.getAttribute('aria-expanded') === 'false'}`)
 			requestAnimationFrame(function () {
 				clicked = false
@@ -91,12 +85,12 @@ const { slug } = Astro.props
 
 <style is:global>
 	.site-name {
-		@apply text-xl font-bold;
+		@apply ml-4 text-xl font-bold lg:ml-0;
 		color: light-dark(var(--tmtGray-900), var(--tmtGray-400));
 	}
 
 	.menu-button {
-		@apply w-9.5 h-7.5 flex appearance-none items-center justify-center rounded border;
+		@apply w-9.5 h-7.5 ml-auto mr-4 flex appearance-none items-center justify-center rounded border lg:hidden;
 		border-color: var(--tmtGray-600);
 		color: var(--tmtGray-500);
 	}
@@ -110,10 +104,15 @@ const { slug } = Astro.props
 
 	.menu {
 		@apply z-20 mt-2 w-full grow lg:mt-0 lg:block lg:w-auto;
+		display: none;
+	}
+
+	[aria-expanded='true'] + .menu {
+		display: block;
 	}
 
 	.menu-item {
-		@apply block px-4 py-2 lg:inline-block;
+		@apply block px-4 py-2 lg:inline-block lg:px-2;
 		color: light-dark(var(--tmtGray-650), var(--tmtGray-500));
 	}
 
