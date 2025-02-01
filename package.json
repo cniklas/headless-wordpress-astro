@@ -21,7 +21,7 @@
     "astro": "^5.2.3",
     "node-html-parser": "^7.0.1",
     "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.6.9",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "unocss": "^65.4.3"
   }
 }
