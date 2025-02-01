@@ -17,7 +17,7 @@
   "devDependencies": {
     "@unocss/astro": "^65.4.3",
     "@unocss/reset": "^65.4.3",
-    "@unocss/transformer-directives": "^0.65.3",
+    "@unocss/transformer-directives": "^65.4.3",
     "astro": "^5.2.3",
     "node-html-parser": "^7.0.1",
     "prettier-plugin-astro": "^0.14.1",
