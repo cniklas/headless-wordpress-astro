@@ -33,8 +33,11 @@ const { slug, title, footer } = Astro.props
 		</main>
 
 		<footer class={footer ? '-mt-2 pb-6 flex justify-center' : 'hidden'}>
-			<a href="https://github.com/cniklas/headless-wordpress-astro" rel="noopener">
-				<span class="sr-only">GitHub Repository für diese Website</span>
+			<a
+				href="https://github.com/cniklas/headless-wordpress-astro"
+				aria-label="GitHub Repository für diese Website"
+				rel="noopener"
+			>
 				<svg class="size-6 fill-current" aria-hidden="true" viewBox="0 0 16 16" width="24" height="24">
 					<path
 						fill-rule="evenodd"
