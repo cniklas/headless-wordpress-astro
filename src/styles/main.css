@@ -167,8 +167,12 @@ td a {
 	}
 }
 
-#content > p:not(:empty) {
+:where(#content) > p:not(:empty) {
 	@apply mb-6;
+}
+
+:where(#content) .has-text-align-center {
+	text-align: center;
 }
 
 /* Dark Mode < 1024 */
