@@ -7,5 +7,5 @@ export const formatDate = (date = null) => {
 		minute: 'numeric',
 	}
 
-	return new Date(date).toLocaleString('de', format)
+	return new Date(date).toLocaleDateString('de', format)
 }
