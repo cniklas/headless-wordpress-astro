@@ -63,7 +63,6 @@ export type CalendarPage = {
 }
 const _calendarPages: CalendarPage[] = [
 	{ title: 'Ton', slug: 'ton', isHome: false },
-	{ title: 'Support', slug: 'support', isHome: false },
 ]
 
 export const getCalendarPage = (key: string) => _calendarPages.find(item => item.slug === key)

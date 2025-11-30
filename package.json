@@ -1,6 +1,6 @@
 {
   "name": "headless-wordpress-astro",
-  "version": "3.28.0",
+  "version": "3.29.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/cniklas/headless-wordpress-astro.git"
@@ -17,7 +17,7 @@
   "devDependencies": {
     "@unocss/reset": "^66.0.0",
     "@unocss/transformer-directives": "^66.0.0",
-    "astro": "^5.15.9",
+    "astro": "^5.16.3",
     "node-html-parser": "^7.0.1",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.1",

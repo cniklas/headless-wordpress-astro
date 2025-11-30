@@ -64,23 +64,23 @@ const { slug } = Astro.props
 </div>
 
 <script>
-	const setupMobileNav = () => {
-		let clicked = false
-		const button = document.querySelector<HTMLButtonElement>('#js-menu-button')
-		button?.addEventListener('click', function () {
-			if (clicked) return
-			clicked = true
-			button.setAttribute('aria-expanded', `${button.getAttribute('aria-expanded') === 'false'}`)
-			requestAnimationFrame(function () {
-				clicked = false
-			})
+	let clicked = false
+	const button = document.querySelector<HTMLButtonElement>('#js-menu-button')
+
+	const toggleNav = () => {
+		if (clicked) return
+		clicked = true
+		button?.setAttribute('aria-expanded', `${button.getAttribute('aria-expanded') === 'false'}`)
+		requestAnimationFrame(() => {
+			clicked = false
 		})
 	}
-	// https://docs.astro.build/en/guides/view-transitions/#astroafter-swap
-	// runs on initial navigation
-	setupMobileNav()
-	// // runs on view transitions navigation
-	// document.addEventListener('astro:after-swap', setupMobileNav);
+	button?.addEventListener('click', toggleNav)
+
+	window.addEventListener('pageshow', e => {
+		// page is restored from back/forward cache
+		if (e.persisted) button?.setAttribute('aria-expanded', 'false')
+	})
 </script>
 
 <style is:global>
@@ -90,7 +90,7 @@ const { slug } = Astro.props
 	}
 
 	.menu-button {
-		@apply w-9.5 h-7.5 ml-auto mr-4 flex appearance-none items-center justify-center rounded border lg:hidden;
+		@apply mr-4 ml-auto flex h-7.5 w-9.5 appearance-none items-center justify-center rounded border lg:hidden;
 		border-color: var(--tmtGray-600);
 		color: var(--tmtGray-500);
 	}
