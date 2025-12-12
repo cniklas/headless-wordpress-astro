@@ -1,13 +1,13 @@
 ---
-import Nav from '../components/Nav.astro'
-import { siteName } from '../lib/api'
-import '../styles/main.css'
-export interface Props {
+import { WP_TITLE } from 'astro:env/server'
+import Nav from '@/components/Nav.astro'
+import '@/assets/main.css'
+
+interface Props {
 	slug: string
 	title?: string
 	footer?: boolean
 }
-
 const { slug, title, footer } = Astro.props
 ---
 
@@ -17,7 +17,7 @@ const { slug, title, footer } = Astro.props
 	<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{title ? `${title} - ${siteName}` : siteName}</title>
+	<title>{title ? `${title} - ${WP_TITLE}` : WP_TITLE}</title>
 
 	<meta name="robots" content="noindex, nofollow">
 	<link rel="icon" type="image/x-icon" href="/favicon.ico">

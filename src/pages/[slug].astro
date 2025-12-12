@@ -1,20 +1,14 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import { getAllExceptHomePage, processTable, type Page } from '../lib/api'
-import { formatDate } from '../lib/dateTime'
-export interface Props {
-	page: Page
-	modified: string
-}
+import Layout from '@/layouts/Layout.astro'
+import { getAllExceptHomePage, processTable } from '@/lib/api'
+import { formatDate } from '@/lib/dateTime'
 
 export async function getStaticPaths() {
 	const pages = await getAllExceptHomePage()
-	const routes = pages.map(page => ({
+	return pages.map(page => ({
 		params: { slug: page.slug },
 		props: { page, modified: formatDate(page.modified) },
 	}))
-
-	return routes
 }
 
 const { page, modified } = Astro.props
@@ -30,6 +24,6 @@ const content = processTable(page.content)
 			aktualisiert am {modified}
 		</div>
 
-		<div id="content" class="pb-6 pt-9 lg:pt-10" set:html={content} />
+		<div id="content" class="pt-9 pb-6 lg:pt-10" set:html={content} />
 	</div>
 </Layout>

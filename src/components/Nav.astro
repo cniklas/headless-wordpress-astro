@@ -1,17 +1,18 @@
 ---
-import { siteName, buildNavi, staticLinks, type Page, type CalendarPage } from '../lib/api'
-export interface Props {
+import { WP_TITLE } from 'astro:env/server'
+import { buildNavi, staticLinks, type Page, type CalendarPage } from '@/lib/api'
+
+interface Props {
 	slug: string
 }
+const { slug } = Astro.props
 
 const navi = await buildNavi()
-
-const { slug } = Astro.props
 ---
 
 <div class="mx-auto flex flex-wrap items-center py-3 lg:max-w-4xl">
 	<a class="site-name" href="/">
-		{siteName}
+		{WP_TITLE}
 	</a>
 
 	<button

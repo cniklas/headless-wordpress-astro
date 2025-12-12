@@ -1,6 +1,6 @@
 {
   "name": "headless-wordpress-astro",
-  "version": "3.29.0",
+  "version": "3.30.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/cniklas/headless-wordpress-astro.git"

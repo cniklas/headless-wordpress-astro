@@ -1,7 +1,7 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import { getHomePage, processTable } from '../lib/api'
-import { formatDate } from '../lib/dateTime'
+import Layout from '@/layouts/Layout.astro'
+import { getHomePage, processTable } from '@/lib/api'
+import { formatDate } from '@/lib/dateTime'
 
 const page = await getHomePage()
 const modified = formatDate(page.modified)
@@ -17,7 +17,7 @@ const content = processTable(page.content)
 			aktualisiert am {modified}
 		</div>
 
-		<div id="content" class="pb-6 pt-9 lg:pt-10" set:html={content} />
+		<div id="content" class="pt-9 pb-6 lg:pt-10" set:html={content} />
 
 		<div class="flex justify-center py-6">
 			<img

@@ -1,12 +1,19 @@
 import { parse } from 'node-html-parser'
-const WP_URL: string = import.meta.env.WP_URL
+import { WP_URL } from 'astro:env/server'
 const WP_HOME_URL = `${WP_URL}/`
 const WP_REST_URL = `${WP_URL}/wp-json/wp/v2`
 const WP_ADMIN_URL = `${WP_URL}/admin`
 
-export const siteName: string = import.meta.env.WP_TITLE
+type WordPressPage = {
+	title: { rendered: string }
+	modified: string
+	content: { rendered: string }
+	slug: string
+	link: string
+	menu_order: number
+}
 
-const _fetchFromWordPress = async (query = 'pages') => {
+const _fetchFromWordPress = async (query = 'pages'): Promise<WordPressPage[]> => {
 	const response = await fetch(`${WP_REST_URL}/${query}`)
 	if (response.ok) return response.json()
 
@@ -22,6 +29,7 @@ export type Page = {
 	isHome: boolean
 	menu_order: number
 }
+
 const pages: Page[] = []
 const _getPages = async () => {
 	if (pages.length) return pages
@@ -61,9 +69,7 @@ export type CalendarPage = {
 	slug: string
 	isHome: boolean
 }
-const _calendarPages: CalendarPage[] = [
-	{ title: 'Ton', slug: 'ton', isHome: false },
-]
+const _calendarPages: CalendarPage[] = [{ title: 'Ton', slug: 'ton', isHome: false }]
 
 export const getCalendarPage = (key: string) => _calendarPages.find(item => item.slug === key)
 
@@ -81,7 +87,7 @@ export const processTable = (content: string) => {
 	const table = dom.querySelector('table')
 	if (!table) return content
 
-	const headers = []
+	const headers: string[] = []
 	const thead = table.querySelector('thead')
 
 	if (thead) {
