@@ -1,5 +1,4 @@
-import { defineConfig, presetMini } from 'unocss'
-import transformerDirectives from '@unocss/transformer-directives'
+import { defineConfig, presetMini, transformerDirectives } from 'unocss'
 
 export default defineConfig({
 	// https://unocss.dev/presets/mini
