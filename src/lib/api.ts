@@ -1,8 +1,8 @@
 import { parse } from 'node-html-parser'
 import { WP_URL } from 'astro:env/server'
-const WP_HOME_URL = `${WP_URL}/`
-const WP_REST_URL = `${WP_URL}/wp-json/wp/v2`
-const WP_ADMIN_URL = `${WP_URL}/admin`
+const HOME_URL = `${WP_URL}/`
+const REST_URL = `${WP_URL}/wp-json/wp/v2`
+const LOGIN_URL = `${WP_URL}/admin`
 
 type WordPressPage = {
 	title: { rendered: string }
@@ -14,7 +14,7 @@ type WordPressPage = {
 }
 
 const _fetchFromWordPress = async (query = 'pages'): Promise<WordPressPage[]> => {
-	const response = await fetch(`${WP_REST_URL}/${query}`)
+	const response = await fetch(`${REST_URL}/${query}`)
 	if (response.ok) return response.json()
 
 	const error = await response.json()
@@ -42,7 +42,7 @@ const _getPages = async () => {
 				content,
 				modified,
 				slug,
-				isHome: link === WP_HOME_URL,
+				isHome: link === HOME_URL,
 				menu_order,
 			})
 		},
@@ -79,7 +79,7 @@ export const buildNavi: () => Promise<Page[] | CalendarPage[]> = async () => {
 	return [..._pages, ..._calendarPages]
 }
 
-export const staticLinks = [{ title: 'Login', url: WP_ADMIN_URL }]
+export const staticLinks = [{ title: 'Login', url: LOGIN_URL }]
 
 export const processTable = (content: string) => {
 	// https://github.com/taoqf/node-html-parser

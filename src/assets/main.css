@@ -31,7 +31,7 @@ body {
 }
 
 .content-title {
-	@apply break-words pb-1 pt-3 text-center text-3xl/normal font-bold md:pb-2 md:text-4xl/normal lg:break-normal lg:pt-6 dark:font-semibold;
+	@apply pt-3 pb-1 text-center text-3xl/normal font-bold text-balance break-words md:pb-2 md:text-4xl/normal lg:pt-6 lg:break-normal dark:font-semibold;
 	color: light-dark(var(--tmtGray-900), var(--tmtGray-300));
 }
 
@@ -117,7 +117,7 @@ td a {
 
 	tbody td[data-th]::before {
 		content: attr(data-th) ': ';
-		@apply overflow-clip text-ellipsis font-semibold;
+		@apply overflow-clip font-semibold text-ellipsis;
 	}
 
 	thead,
