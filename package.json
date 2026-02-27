@@ -15,7 +15,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "astro": "^5.17.1",
+    "astro": "^5.18.0",
     "node-html-parser": "^7.0.1",
     "unocss": "^66.5.12"
   },
