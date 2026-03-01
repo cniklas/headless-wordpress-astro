@@ -17,7 +17,7 @@
   "dependencies": {
     "astro": "^5.18.0",
     "node-html-parser": "^7.0.1",
-    "unocss": "^66.5.12"
+    "unocss": "^66.6.2"
   },
   "devDependencies": {
     "prettier-plugin-astro": "^0.14.1",
