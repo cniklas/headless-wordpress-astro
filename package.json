@@ -16,14 +16,14 @@
   },
   "dependencies": {
     "astro": "^6.3.7",
-    "node-html-parser": "^7.0.1"
+    "node-html-parser": "^7.1.0"
   },
   "devDependencies": {
-    "@unocss/astro": "^66.6.7",
-    "@unocss/reset": "^66.6.8",
+    "@unocss/astro": "^66.7.0",
+    "@unocss/reset": "^66.7.0",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.8.0",
-    "unocss": "^66.6.7"
+    "unocss": "^66.7.0"
   },
   "engines": {
     "node": ">=22.12.0"
